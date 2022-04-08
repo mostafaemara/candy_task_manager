@@ -1,0 +1,16 @@
+{
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "appTitle": "task_manger",
+  "confirmPassword": "تأكيد كلمة المرور",
+  "email": "البريد الالكتروني",
+  "forgotPassword": "نسيت كلمة المرور؟",
+  "haveAccount": "هل لديك حساب؟ سجل الدخول",
+  "login": "تسجيل دخول",
+  "newUserRegister": "ليس لديك حساب؟ أنشئ حسابًا",
+  "password": "كلمة المرور",
+  "register": "تسجيل الدخول",
+  "splashTitle": "مدير مهام سهل الاستخدام",
+  "termsAndPolicies": "بالتسجيل ، فإنك تقبل تلقائيًا شروط وسياسات التطبيق"
+}

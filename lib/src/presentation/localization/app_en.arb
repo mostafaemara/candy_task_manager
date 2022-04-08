@@ -1,0 +1,16 @@
+{
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "appTitle": "task_manger",
+  "confirmPassword": "Confirm Password",
+  "email": "Email",
+  "forgotPassword": "Forgot password?",
+  "haveAccount": "Have account? Log In",
+  "login": "Login",
+  "newUserRegister": "New User? Register Here",
+  "password": "Password",
+  "register": "Register",
+  "splashTitle": "Simple Task Manger",
+  "termsAndPolicies": "By registering, you automatically accept the Terms & Policies of candy app."
+}
