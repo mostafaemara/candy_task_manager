@@ -15,4 +15,6 @@ class AppColors {
       onBackground: darkBlue,
       surface: Colors.white,
       onSurface: darkBlue);
+
+  static const aquamarine = Color(0xff93FFDF);
 }
