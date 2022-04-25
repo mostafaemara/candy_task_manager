@@ -12,7 +12,7 @@ class Header extends StatelessWidget {
       padding: const EdgeInsetsDirectional.only(start: 32),
       height: 112,
       child: SizedBox(
-        width: 110,
+        width: 112,
         child: Text(
           title,
           maxLines: 2,

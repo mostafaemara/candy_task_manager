@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:task_manger/src/presentation/common/app_bar_with_search.dart';
+import 'package:task_manger/src/presentation/common/custom_app_bar.dart';
 import 'package:task_manger/src/presentation/common/header.dart';
-import 'package:task_manger/src/presentation/styles/colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:task_manger/src/presentation/common/menu_button.dart';
+import 'package:task_manger/src/presentation/common/search_button.dart';
+import 'package:task_manger/src/presentation/common/task_list_item.dart';
 
 class TodoScreen extends StatefulWidget {
   const TodoScreen({Key? key}) : super(key: key);
@@ -31,19 +34,18 @@ class _TodoScreenState extends State<TodoScreen> {
   ];
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        child: Column(
+    return Column(
       children: [
-        AppBarWithSearch(
-          onDrawerPressed: () {},
-          onSearchPressed: () {},
-          title: "TO-DO",
+        CustomAppBar(
+          trailing: SearchButton(onPressed: () {}),
+          leading: MenuButton(onPressed: () {}),
+          title: AppLocalizations.of(context)!.todo,
         ),
-        const Header(title: "Today's list ---"),
+        Header(title: AppLocalizations.of(context)!.todayList),
         Expanded(
             child: ListView.builder(
           itemCount: todos.length,
-          itemBuilder: (context, index) => TodoListItem(
+          itemBuilder: (context, index) => TaskListItem(
               todo: todos[index],
               onChange: (value) {
                 setState(() {
@@ -52,68 +54,6 @@ class _TodoScreenState extends State<TodoScreen> {
               }),
         ))
       ],
-    ));
-  }
-}
-
-class TodoListItem extends StatelessWidget {
-  final todo;
-  final void Function(bool value) onChange;
-  const TodoListItem({
-    Key? key,
-    this.todo,
-    required this.onChange,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-        title: Text(todo["title"] as String,
-            style: TextStyle(
-                fontSize: 12,
-                height: 2,
-                fontWeight: FontWeight.w200,
-                color: Theme.of(context)
-                    .colorScheme
-                    .onSurface
-                    .withOpacity(todo["isCompleted"] ? 0.5 : 1))),
-        leading: CustomCheckBox(
-          onChange: onChange,
-          value: todo["isCompleted"] as bool,
-        ));
-  }
-}
-
-class CustomCheckBox extends StatelessWidget {
-  const CustomCheckBox({Key? key, required this.onChange, required this.value})
-      : super(key: key);
-  final void Function(bool value) onChange;
-  final bool value;
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        onChange(!value);
-      },
-      child: Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.5),
-            border: Border.all(width: 2, color: AppColors.aquamarine)),
-        width: 24,
-        height: 24,
-        child: value
-            ? Container(
-                width: 22,
-                height: 22,
-                color: AppColors.aquamarine,
-                child: const Icon(
-                  Icons.check,
-                  color: Colors.black,
-                  size: 15,
-                ))
-            : null,
-      ),
     );
   }
 }

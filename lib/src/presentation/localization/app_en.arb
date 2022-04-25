@@ -2,6 +2,7 @@
   "@appTitle": {
     "description": "The title of the application"
   },
+  "alerts": "Alerts.        & updates —",
   "appTitle": "task_manger",
   "confirmPassword": "Confirm Password",
   "email": "Email",
@@ -9,8 +10,14 @@
   "haveAccount": "Have account? Log In",
   "login": "Login",
   "newUserRegister": "New User? Register Here",
+  "notifications": "Notifications",
   "password": "Password",
+  "profile": "Profile",
   "register": "Register",
+  "scheduler": "Scheduler",
   "splashTitle": "Simple Task Manger",
-  "termsAndPolicies": "By registering, you automatically accept the Terms & Policies of candy app."
+  "termsAndPolicies": "By registering, you automatically accept the Terms & Policies of candy app.",
+  "todayList": "Today's list —",
+  "todo": "TO-DO",
+  "upcomingTasks": "Upcoming tasks —"
 }

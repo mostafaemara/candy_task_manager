@@ -2,6 +2,7 @@
   "@appTitle": {
     "description": "The title of the application"
   },
+  "alerts": " التنبيهات و تحديثات  —",
   "appTitle": "task_manger",
   "confirmPassword": "تأكيد كلمة المرور",
   "email": "البريد الالكتروني",
@@ -9,8 +10,14 @@
   "haveAccount": "هل لديك حساب؟ سجل الدخول",
   "login": "تسجيل دخول",
   "newUserRegister": "ليس لديك حساب؟ أنشئ حسابًا",
+  "notifications": "إشعارات",
   "password": "كلمة المرور",
+  "profile": "الملف الشخصي",
   "register": "تسجيل الدخول",
+  "scheduler": "المجدول",
   "splashTitle": "مدير مهام سهل الاستخدام",
-  "termsAndPolicies": "بالتسجيل ، فإنك تقبل تلقائيًا شروط وسياسات التطبيق"
+  "termsAndPolicies": "بالتسجيل ، فإنك تقبل تلقائيًا شروط وسياسات التطبيق",
+  "todayList": "قائمة اليوم",
+  "todo": "المهام",
+  "upcomingTasks": "المهام القادمة -"
 }

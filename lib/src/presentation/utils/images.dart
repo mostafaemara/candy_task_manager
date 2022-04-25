@@ -12,4 +12,6 @@ class Images {
   static const selected_profile_icon = "assets/images/selected_user_icon.png";
   static const menuIcon = "assets/images/menu_icon.png";
   static const searchIcon = "assets/images/search_icon.png";
+  static const noteIcon = "assets/images/note.png";
+  static const alertIcon = "assets/images/i.png";
 }
