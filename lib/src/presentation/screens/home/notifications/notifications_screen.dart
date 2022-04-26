@@ -40,7 +40,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         child: Column(
       children: [
         CustomAppBar(
-          trailing: SearchButton(onPressed: () {}),
+          actions: [SearchButton(onPressed: () {})],
           leading: MenuButton(onPressed: () {}),
           title: AppLocalizations.of(context)!.notifications.toUpperCase(),
         ),

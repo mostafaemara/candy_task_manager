@@ -37,7 +37,7 @@ class _TodoScreenState extends State<TodoScreen> {
     return Column(
       children: [
         CustomAppBar(
-          trailing: SearchButton(onPressed: () {}),
+          actions: [SearchButton(onPressed: () {})],
           leading: MenuButton(onPressed: () {}),
           title: AppLocalizations.of(context)!.todo,
         ),

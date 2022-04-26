@@ -38,7 +38,7 @@ class _SchedulerScreenState extends State<SchedulerScreen> {
         child: Column(
       children: [
         CustomAppBar(
-          trailing: SearchButton(onPressed: () {}),
+          actions: [SearchButton(onPressed: () {})],
           leading: MenuButton(onPressed: () {}),
           title: AppLocalizations.of(context)!.scheduler.toUpperCase(),
         ),

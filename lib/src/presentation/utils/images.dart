@@ -14,4 +14,5 @@ class Images {
   static const searchIcon = "assets/images/search_icon.png";
   static const noteIcon = "assets/images/note.png";
   static const alertIcon = "assets/images/i.png";
+  static const checkIcon = "assets/images/check.png";
 }

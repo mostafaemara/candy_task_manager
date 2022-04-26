@@ -20,6 +20,7 @@ dependencies:
   firebase_core: ^1.14.0
   firebase_messaging: ^11.2.12
   workmanager: ^0.4.1
+  flutter_switch: ^0.3.2
 dev_dependencies:
   flutter_test:
     sdk: flutter

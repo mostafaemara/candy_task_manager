@@ -5,6 +5,11 @@ class Subtitle extends StatelessWidget {
   final String title;
   @override
   Widget build(BuildContext context) {
-    return Text(title);
+    return SizedBox(
+        width: double.infinity,
+        child: Text(title,
+            style: TextStyle(
+                fontWeight: FontWeight.w200,
+                color: Theme.of(context).colorScheme.onSurface)));
   }
 }
