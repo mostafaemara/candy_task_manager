@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:task_manger/src/presentation/common/custom_app_bar.dart';
 import 'package:task_manger/src/presentation/common/header.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:task_manger/src/presentation/common/menu_button.dart';
 import 'package:task_manger/src/presentation/common/search_button.dart';
 import 'package:task_manger/src/presentation/common/task_list_item.dart';
 
@@ -39,7 +38,6 @@ class _SchedulerScreenState extends State<SchedulerScreen> {
       children: [
         CustomAppBar(
           actions: [SearchButton(onPressed: () {})],
-          leading: MenuButton(onPressed: () {}),
           title: AppLocalizations.of(context)!.scheduler.toUpperCase(),
         ),
         Header(title: AppLocalizations.of(context)!.upcomingTasks),

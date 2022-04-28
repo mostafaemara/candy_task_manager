@@ -21,6 +21,8 @@ dependencies:
   firebase_messaging: ^11.2.12
   workmanager: ^0.4.1
   flutter_switch: ^0.3.2
+  shared_preferences: ^2.0.13
+  flutter_bloc: ^8.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

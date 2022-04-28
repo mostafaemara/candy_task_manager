@@ -21,7 +21,8 @@ class NewTaskScreen extends StatelessWidget {
         ),
         onPressed: () {},
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterFloat,
     );
   }
 }

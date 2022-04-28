@@ -1,10 +1,12 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:task_manger/src/application/login/login_cubit.dart';
+import 'package:task_manger/src/data/repositories/auth_repository.dart';
 import 'package:task_manger/src/data/repositories/notification_repository.dart';
+import 'package:task_manger/src/data/repositories/user_repository.dart';
 
-import 'firebase_options.dart';
 import 'src/app.dart';
 
 final NotificationRepository notificationRepository = NotificationRepository();
@@ -24,33 +26,37 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await notificationRepository.initialize();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  NotificationSettings settings =
-      await FirebaseMessaging.instance.requestPermission(
-    alert: true,
-    announcement: false,
-    badge: true,
-    carPlay: false,
-    criticalAlert: false,
-    provisional: false,
-    sound: true,
-  );
 
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  FirebaseMessaging.onMessage.listen(
-    (message) {
-      if (message.notification != null) {
-        notificationRepository.showNotification(
-            id: 3,
-            title: message.notification!.title!,
-            body: message.notification!.body!,
-            payload: message.data.toString());
-      }
-    },
-  );
+  final _db = await SharedPreferences.getInstance();
+  final _userRepo = UserRepository(_db);
+  final _authRepo = AuthRepository(_userRepo);
+  // await notificationRepository.initialize();
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
+  // NotificationSettings settings =
+  //     await FirebaseMessaging.instance.requestPermission(
+  //   alert: true,
+  //   announcement: false,
+  //   badge: true,
+  //   carPlay: false,
+  //   criticalAlert: false,
+  //   provisional: false,
+  //   sound: true,
+  // );
+
+  // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  // FirebaseMessaging.onMessage.listen(
+  //   (message) {
+  //     if (message.notification != null) {
+  //       notificationRepository.showNotification(
+  //           id: 3,
+  //           title: message.notification!.title!,
+  //           body: message.notification!.body!,
+  //           payload: message.data.toString());
+  //     }
+  //   },
+  // );
   // Set up the SettingsController, which will glue user settings to multiple
   // Flutter Widgets.
 
@@ -60,5 +66,9 @@ void main() async {
   // Run the app and pass in the SettingsController. The app listens to the
   // SettingsController for changes, then passes it further down to the
   // SettingsView.
-  runApp(TaskMangerApp());
+  runApp(MultiBlocProvider(providers: [
+    BlocProvider(
+      create: (context) => LoginCubit(_authRepo),
+    )
+  ], child: TaskMangerApp()));
 }

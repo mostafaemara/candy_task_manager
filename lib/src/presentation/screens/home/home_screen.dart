@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
           FloatingActionButtonLocation.miniCenterDocked,
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            AutoRouter.of(context).replace(const NewTaskRoute());
+            AutoRouter.of(context).navigate(const NewTaskRoute());
           },
           child: const Icon(Icons.add)),
     );
