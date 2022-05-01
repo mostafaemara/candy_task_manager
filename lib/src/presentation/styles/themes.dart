@@ -6,7 +6,13 @@ class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
         inputDecorationTheme: InputDecorationTheme(
-            contentPadding: const EdgeInsets.all(10),
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(8)),
+            errorBorder: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(8)),
+            contentPadding: const EdgeInsets.all(8),
             border: OutlineInputBorder(
                 borderSide: BorderSide.none,
                 borderRadius: BorderRadius.circular(8)),

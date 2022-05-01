@@ -2,9 +2,11 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:task_manger/src/application/login/login_cubit.dart';
+import 'package:task_manger/src/application/bloc/login/login_cubit.dart';
+import 'package:task_manger/src/application/bloc/signup/signup_cubit.dart';
+import 'package:task_manger/src/application/bloc/splash/splash_bloc.dart';
 import 'package:task_manger/src/data/repositories/auth_repository.dart';
-import 'package:task_manger/src/data/repositories/notification_repository.dart';
+import 'package:task_manger/src/data/repositories/notificationz_repository.dart';
 import 'package:task_manger/src/data/repositories/user_repository.dart';
 
 import 'src/app.dart';
@@ -68,7 +70,13 @@ void main() async {
   // SettingsView.
   runApp(MultiBlocProvider(providers: [
     BlocProvider(
+      create: (context) => SplashCubit(_userRepo),
+    ),
+    BlocProvider(
       create: (context) => LoginCubit(_authRepo),
+    ),
+    BlocProvider(
+      create: (context) => SignupCubit(_authRepo),
     )
   ], child: TaskMangerApp()));
 }

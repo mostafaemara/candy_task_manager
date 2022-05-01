@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:task_manger/src/application/validators/auth_validators.dart';
+import "package:task_manger/src/presentation/helpers/auth_validation_error_helper.dart";
 
 class PassowrdFormField extends StatelessWidget {
   const PassowrdFormField({Key? key, required this.controller})
@@ -6,11 +8,10 @@ class PassowrdFormField extends StatelessWidget {
   final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 51,
-      child: TextFormField(
-        controller: controller,
-      ),
+    return TextFormField(
+      validator: (value) =>
+          passwordValidator(value).translateForPassword(context),
+      controller: controller,
     );
   }
 }
