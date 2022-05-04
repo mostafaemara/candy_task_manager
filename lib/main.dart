@@ -5,11 +5,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:task_manger/src/application/bloc/login/login_cubit.dart';
 import 'package:task_manger/src/application/bloc/signup/signup_cubit.dart';
 import 'package:task_manger/src/application/bloc/splash/splash_bloc.dart';
+import 'package:task_manger/src/application/bloc/tasks/tasks_cubit.dart';
 import 'package:task_manger/src/data/repositories/auth_repository.dart';
 import 'package:task_manger/src/data/repositories/notificationz_repository.dart';
+import 'package:task_manger/src/data/repositories/task_repository.dart';
 import 'package:task_manger/src/data/repositories/user_repository.dart';
+import 'package:task_manger/src/data/sqlite/sqlite_helper.dart';
 
 import 'src/app.dart';
+import 'src/application/bloc/new_task/new_task_cubit.dart';
 
 final NotificationRepository notificationRepository = NotificationRepository();
 
@@ -32,6 +36,10 @@ void main() async {
   final _db = await SharedPreferences.getInstance();
   final _userRepo = UserRepository(_db);
   final _authRepo = AuthRepository(_userRepo);
+
+  final _sqlHelper = SqliteHelper();
+  final _sqlDb = await _sqlHelper.initDb();
+  final _tasksRepository = TaskRepository(_sqlDb);
   // await notificationRepository.initialize();
   // await Firebase.initializeApp(
   //   options: DefaultFirebaseOptions.currentPlatform,
@@ -77,6 +85,12 @@ void main() async {
     ),
     BlocProvider(
       create: (context) => SignupCubit(_authRepo),
-    )
+    ),
+    BlocProvider(
+      create: (context) => TasksCubit(_tasksRepository)..init(),
+    ),
+    BlocProvider(
+      create: (context) => NewTaskCubit(_tasksRepository),
+    ),
   ], child: TaskMangerApp()));
 }

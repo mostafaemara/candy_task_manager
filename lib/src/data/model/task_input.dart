@@ -16,9 +16,10 @@ class TaskInput {
   Map<String, dynamic> toMap() {
     return {
       'taskNote': taskNote,
-      'date': date.millisecondsSinceEpoch,
-      'isAlarm': isAlarm,
-      'isNotification': isNotification,
+      'date': date.toIso8601String(),
+      'isAlarm': isAlarm ? 1 : 0,
+      'isNotification': isNotification ? 1 : 0,
+      "isCompleted": 0
     };
   }
 

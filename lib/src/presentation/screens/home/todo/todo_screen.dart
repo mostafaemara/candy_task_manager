@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:task_manger/src/application/bloc/tasks/tasks.state.dart';
+import 'package:task_manger/src/application/bloc/tasks/tasks_cubit.dart';
 import 'package:task_manger/src/presentation/common/custom_app_bar.dart';
 import 'package:task_manger/src/presentation/common/header.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -13,24 +16,6 @@ class TodoScreen extends StatefulWidget {
 }
 
 class _TodoScreenState extends State<TodoScreen> {
-  static var todos = [
-    {
-      "title": "todo title",
-      "isCompleted": true,
-    },
-    {
-      "title": "todo title",
-      "isCompleted": false,
-    },
-    {
-      "title": "todo title",
-      "isCompleted": true,
-    },
-    {
-      "title": "todo title",
-      "isCompleted": true,
-    },
-  ];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -41,15 +26,19 @@ class _TodoScreenState extends State<TodoScreen> {
         ),
         Header(title: AppLocalizations.of(context)!.todayList),
         Expanded(
-            child: ListView.builder(
-          itemCount: todos.length,
-          itemBuilder: (context, index) => TaskListItem(
-              todo: todos[index],
-              onChange: (value) {
-                setState(() {
-                  todos[index]["isCompleted"] = value;
-                });
-              }),
+            child: BlocBuilder<TasksCubit, TasksState>(
+          builder: (context, state) => state.isLoading
+              ? CircularProgressIndicator(
+                  color: Theme.of(context).colorScheme.secondary,
+                )
+              : ListView.builder(
+                  itemCount: state.todayTasks.length,
+                  itemBuilder: (context, index) => TaskListItem(
+                      task: state.todayTasks[index],
+                      onChange: (value) {
+                        setState(() {});
+                      }),
+                ),
         ))
       ],
     );
