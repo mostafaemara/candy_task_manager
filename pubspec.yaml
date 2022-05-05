@@ -15,11 +15,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   auto_route: ^3.2.4
-  flutter_local_notifications: ^9.4.0
-  restart_app: ^1.1.0
-  firebase_core: ^1.14.0
-  firebase_messaging: ^11.2.12
-  workmanager: ^0.4.1
+  flutter_local_notifications: ^9.5.1
+
   flutter_switch: ^0.3.2
   shared_preferences: ^2.0.13
   flutter_bloc: ^8.0.1
