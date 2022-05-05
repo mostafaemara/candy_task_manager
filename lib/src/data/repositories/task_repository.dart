@@ -5,29 +5,48 @@ import 'package:task_manger/src/data/model/task.dart';
 import 'package:task_manger/src/data/model/task_input.dart';
 import 'package:task_manger/src/data/model/tasks_of_date.dart';
 import 'package:task_manger/src/data/sqlite/sqlite_helper.dart';
+import 'package:task_manger/src/helpers/datetime_helper.dart';
 
 class TaskRepository {
   final Database _db;
-  final StreamController<List<Task>> _tasksController =
-      StreamController<List<Task>>();
-
-  List<Task>? _tasks;
+  final _controller = StreamController();
   TaskRepository(this._db);
   Future<List<Task>> readTodayTasks() async {
     final maps = await _db.query(SqliteHelper.table);
 
-    _tasks = _mapListToTasks(maps);
-    return _tasks!;
+    final tasks = _mapListToTasks(maps);
+    tasks.retainWhere((element) => element.date.isToday());
+    return tasks;
   }
 
   Future<List<TasksOfDate>> readUpCommingTasks() async {
-    throw UnimplementedError();
+    final maps = await _db.query(SqliteHelper.table);
+    List<TasksOfDate> tasksOfDates = [];
+    final tasks = _mapListToTasks(maps);
+    tasks.retainWhere((element) => element.date.isAfterToday());
+    tasks.sort(
+      (a, b) => a.date.compareTo(b.date),
+    );
+
+    var dates = <DateTime>{};
+
+    for (var element in tasks) {
+      dates.add(
+          DateTime(element.date.year, element.date.month, element.date.day));
+    }
+
+    for (final date in dates) {
+      final tasksOfSameDate =
+          tasks.where((element) => element.date.isSameDateAs(date));
+
+      tasksOfDates
+          .add(TasksOfDate(date: date, tasks: tasksOfSameDate.toList()));
+    }
+    return tasksOfDates;
   }
 
   Future<Task> addTask(TaskInput input) async {
     final id = await _db.insert(SqliteHelper.table, input.toMap());
-
-    _tasks ??= await readTodayTasks();
 
     final newTask = Task(
         isCompleted: false,
@@ -36,9 +55,9 @@ class TaskRepository {
         date: input.date,
         isAlarm: input.isAlarm,
         isNotification: input.isNotification);
-    _tasks?.add(newTask);
 
-    _tasksController.add(_tasks!);
+    _controller.add(id);
+
     return newTask;
   }
 
@@ -51,7 +70,7 @@ class TaskRepository {
     throw UnimplementedError();
   }
 
-  Stream<List<Task>> onTasksChanged() => _tasksController.stream;
+  Stream get onTasksChange => _controller.stream;
 
   List<Task> _mapListToTasks(List<Map<String, dynamic>> maps) {
     final List<Task> tasks = [];

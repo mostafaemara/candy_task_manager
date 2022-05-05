@@ -36,7 +36,9 @@ class _TodoScreenState extends State<TodoScreen> {
                   itemBuilder: (context, index) => TaskListItem(
                       task: state.todayTasks[index],
                       onChange: (value) {
-                        setState(() {});
+                        context
+                            .read<TasksCubit>()
+                            .markAsCompleted(state.todayTasks[index].id);
                       }),
                 ),
         ))

@@ -21,7 +21,7 @@ class Task {
     return {
       'isCompleted': isCompleted,
       'taskNote': taskNote,
-      'date': date.millisecondsSinceEpoch,
+      'date': date.toIso8601String(),
       'isAlarm': isAlarm,
       'isNotification': isNotification,
       'id': id,
@@ -42,4 +42,20 @@ class Task {
   String toJson() => json.encode(toMap());
 
   factory Task.fromJson(String source) => Task.fromMap(json.decode(source));
+
+  Task copyWith({
+    bool? isCompleted,
+    String? taskNote,
+    DateTime? date,
+    bool? isAlarm,
+    bool? isNotification,
+  }) {
+    return Task(
+        isCompleted: isCompleted ?? this.isCompleted,
+        taskNote: taskNote ?? this.taskNote,
+        date: date ?? this.date,
+        isAlarm: isAlarm ?? this.isAlarm,
+        isNotification: isNotification ?? this.isNotification,
+        id: id);
+  }
 }

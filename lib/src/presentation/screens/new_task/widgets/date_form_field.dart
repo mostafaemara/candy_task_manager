@@ -37,7 +37,8 @@ class _DateFormFieldState extends State<DateFormField> {
 
       if (time != null) {
         date =
-            DateTime(date.year, date.month, date.year, time.hour, time.minute);
+            DateTime(date.year, date.month, date.day, time.hour, time.minute);
+
         widget.controller.text = DateFormat("yyyy-MM-dd HH:mm").format(date);
       }
     }

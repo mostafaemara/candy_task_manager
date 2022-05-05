@@ -11,7 +11,6 @@ import 'package:task_manger/src/data/repositories/notificationz_repository.dart'
 import 'package:task_manger/src/data/repositories/task_repository.dart';
 import 'package:task_manger/src/data/repositories/user_repository.dart';
 import 'package:task_manger/src/data/sqlite/sqlite_helper.dart';
-
 import 'src/app.dart';
 import 'src/application/bloc/new_task/new_task_cubit.dart';
 

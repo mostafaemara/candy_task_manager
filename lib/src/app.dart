@@ -13,7 +13,7 @@ class TaskMangerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      locale: const Locale("ar"),
+      locale: const Locale("en"),
       restorationScopeId: 'app',
       localizationsDelegates: const [
         AppLocalizations.delegate,
