@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,17 +18,24 @@ import 'src/application/bloc/new_task/new_task_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final NotificationManger _notificationManger = NotificationManger();
+
+  final _sqlHelper = SqliteHelper();
+  final _sqlDb = await _sqlHelper.initDb();
+  final _tasksRepository = TaskRepository(_sqlDb);
+  final NotificationManger _notificationManger =
+      NotificationManger(onNotificationDisplay: (id, title, body) {
+    log("Notification " + title + id.toString());
+  }, onSelectNotification: (id, action) {
+    log("Action " + id.toString() + action.toString());
+  });
   await _notificationManger.initialize();
 
   final _db = await SharedPreferences.getInstance();
   final _userRepo = UserRepository(_db);
   final _authRepo = AuthRepository(_userRepo);
 
-  final _sqlHelper = SqliteHelper();
-  final _sqlDb = await _sqlHelper.initDb();
-  final _tasksRepository = TaskRepository(_sqlDb);
   final _taskManger = TaskManger(_tasksRepository, _notificationManger);
+
   // await notificationRepository.initialize();
   // await Firebase.initializeApp(
   //   options: DefaultFirebaseOptions.currentPlatform,

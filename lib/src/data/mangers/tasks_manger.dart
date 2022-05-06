@@ -14,12 +14,13 @@ class TaskManger implements TaskRepository {
     final task = await taskRepository.addTask(input);
 
     if (task.isNotification && !task.isCompleted) {
-      notificationManger.scheduleNotification(
+      await notificationManger.scheduleNotification(
           id: task.id,
           title: task.taskNote,
           body: task.taskNote,
           payload: task.taskNote,
-          date: task.date);
+          date: task.date,
+          isAlarm: task.isAlarm);
     }
 
     return task;
@@ -38,15 +39,16 @@ class TaskManger implements TaskRepository {
     return tasks;
   }
 
-  void scheduleTasksNotifications(List<Task> tasks) {
+  void scheduleTasksNotifications(List<Task> tasks) async {
     for (final task in tasks) {
       if (task.isNotification && !task.isCompleted) {
-        notificationManger.scheduleNotification(
+        await notificationManger.scheduleNotification(
             id: task.id,
             title: task.taskNote,
             body: task.taskNote,
             payload: task.taskNote,
-            date: task.date);
+            date: task.date,
+            isAlarm: task.isAlarm);
       }
     }
   }

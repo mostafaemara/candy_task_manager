@@ -15,13 +15,14 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   auto_route: ^3.2.4
-  flutter_local_notifications: ^9.5.1
 
   flutter_switch: ^0.3.2
   shared_preferences: ^2.0.13
   flutter_bloc: ^8.0.1
   validators: ^3.0.0
   sqflite: ^2.0.2+1
+
+  awesome_notifications: ^0.6.21
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -39,6 +40,7 @@ flutter:
   assets:
     # Add assets from the images directory to the application.
     - assets/images/
+    - assets/sounds/
 
   fonts:
     - family: Cairo

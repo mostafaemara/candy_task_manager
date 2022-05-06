@@ -1,13 +1,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mostafaemara.task_manger">
+             <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE " />
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+   <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+   <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
+   <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
    <application
+   android:name="${applicationName}"
         android:label="task_manger"
-        android:name="${applicationName}"
+        
         android:icon="@mipmap/ic_launcher">
+
         <activity
         android:turnScreenOn="true"
         android:showWhenLocked="true"
             android:name=".MainActivity"
+            android:showOnLockScreen="true"
             android:exported="true"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
