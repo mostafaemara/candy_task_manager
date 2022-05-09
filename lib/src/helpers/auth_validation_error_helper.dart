@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:task_manger/src/data/errors/auth_validation_error.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../validators/auth_validation_error.dart';
 
 extension AuthValidationErrorHelper on AuthValidationError {
   String? translateForEmail(BuildContext context) {

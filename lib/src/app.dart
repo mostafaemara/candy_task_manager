@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
-import 'package:task_manger/src/presentation/routes/app_router.dart';
-import 'package:task_manger/src/presentation/styles/themes.dart';
+import 'package:task_manger/src/routes/app_router.dart';
+import 'package:task_manger/src/styles/themes.dart';
 
 class TaskMangerApp extends StatelessWidget {
   TaskMangerApp({

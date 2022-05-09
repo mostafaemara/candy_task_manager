@@ -4,7 +4,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:task_manger/src/data/model/task.dart';
 import 'package:task_manger/src/data/model/task_input.dart';
 import 'package:task_manger/src/data/model/tasks_of_date.dart';
-import 'package:task_manger/src/data/sqlite/sqlite_helper.dart';
+import 'package:task_manger/src/data/sqlite_helper.dart';
 import 'package:task_manger/src/helpers/datetime_helper.dart';
 
 class TaskRepository {
@@ -12,7 +12,7 @@ class TaskRepository {
   final _controller = StreamController();
   TaskRepository(this._db);
   Future<List<Task>> readTodayTasks() async {
-    final maps = await _db.query(SqliteHelper.table);
+    final maps = await _db.query(SqliteHelper.tasksTable);
 
     final tasks = _mapListToTasks(maps);
     tasks.retainWhere((element) => element.date.isToday());
@@ -20,7 +20,7 @@ class TaskRepository {
   }
 
   Future<List<TasksOfDate>> readUpCommingTasks() async {
-    final maps = await _db.query(SqliteHelper.table);
+    final maps = await _db.query(SqliteHelper.tasksTable);
     List<TasksOfDate> tasksOfDates = [];
     final tasks = _mapListToTasks(maps);
     tasks.retainWhere((element) => element.date.isAfterToday());
@@ -46,7 +46,7 @@ class TaskRepository {
   }
 
   Future<Task> addTask(TaskInput input) async {
-    final id = await _db.insert(SqliteHelper.table, input.toMap());
+    final id = await _db.insert(SqliteHelper.tasksTable, input.toMap());
 
     final newTask = Task(
         isCompleted: false,
@@ -62,7 +62,7 @@ class TaskRepository {
   }
 
   Future<void> updateTask(Task task) async {
-    await _db.update(SqliteHelper.table, task.toMap(),
+    await _db.update(SqliteHelper.tasksTable, task.toMap(),
         where: 'id = ?', whereArgs: [task.id]);
   }
 
