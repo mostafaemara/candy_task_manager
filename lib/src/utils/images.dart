@@ -17,4 +17,7 @@ class Images {
   static const checkIcon = "assets/images/check.png";
   static const emptyTasks = "assets/images/empty_tasks.png";
   static const emptyNotifications = "assets/images/empty_notifications.png";
+  static const onboarding_1 = "assets/images/onboarding_1.png";
+  static const onboarding_2 = "assets/images/onboarding_2.png";
+  static const onboarding_3 = "assets/images/onboarding_3.png";
 }

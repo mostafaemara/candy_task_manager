@@ -25,6 +25,10 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const HomeScreen());
     },
+    OnboardingRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const OnboardingScreen());
+    },
     NewTaskRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const NewTaskScreen());
@@ -64,6 +68,7 @@ class _$AppRouter extends RootStackRouter {
           RouteConfig(SettingsRoute.name,
               path: 'settings-screen', parent: HomeRoute.name)
         ]),
+        RouteConfig(OnboardingRoute.name, path: '/onboarding-screen'),
         RouteConfig(NewTaskRoute.name, path: '/new-task-screen'),
         RouteConfig(EditeProfileRoute.name, path: '/edite-profile-screen')
       ];
@@ -84,6 +89,15 @@ class HomeRoute extends PageRouteInfo<void> {
       : super(HomeRoute.name, path: '/home-screen', initialChildren: children);
 
   static const String name = 'HomeRoute';
+}
+
+/// generated route for
+/// [OnboardingScreen]
+class OnboardingRoute extends PageRouteInfo<void> {
+  const OnboardingRoute()
+      : super(OnboardingRoute.name, path: '/onboarding-screen');
+
+  static const String name = 'OnboardingRoute';
 }
 
 /// generated route for

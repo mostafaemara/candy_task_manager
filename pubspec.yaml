@@ -7,30 +7,33 @@ publish_to: "none"
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.16.2 <3.0.0"
+  sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  auto_route: ^3.2.4
+  auto_route: ^4.0.1
 
   flutter_switch: ^0.3.2
   shared_preferences: ^2.0.14
   flutter_bloc: ^8.0.1
   validators: ^3.0.0
   sqflite: ^2.0.2+1
-  workmanager: 0.5.0-dev.8
+  workmanager:
+    git:
+      url: https://github.com/sunalwaysknows/flutter_workmanager
   shared_preferences_android:
   shared_preferences_ios:
+  introduction_screen: ^3.0.2
 
   awesome_notifications: ^0.6.21
 dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner:
-  auto_route_generator: ^3.2.3
+  auto_route_generator: ^4.0.0
 
   flutter_lints: ^1.0.0
 

@@ -10,6 +10,7 @@ import 'package:task_manger/src/ui/home/todo/today_tasks_screen.dart';
 import 'package:task_manger/src/ui/home/upcoming_tasks/upcoming_tasks_screen.dart';
 
 import 'package:task_manger/src/ui/new_task/new_task_screen.dart';
+import 'package:task_manger/src/ui/onboarding/onboarding_screen.dart';
 
 import 'package:task_manger/src/ui/splash/splash_screen.dart';
 part 'app_router.gr.dart';
@@ -24,6 +25,7 @@ part 'app_router.gr.dart';
       AutoRoute(page: NotificationsScreen),
       AutoRoute(page: SettingsScreen),
     ]),
+    AutoRoute(page: OnboardingScreen),
     AutoRoute(page: NewTaskScreen),
     AutoRoute(page: EditeProfileScreen),
   ],

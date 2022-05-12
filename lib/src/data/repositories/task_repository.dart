@@ -49,6 +49,7 @@ class TaskRepository {
     final id = await _db.insert(SqliteHelper.tasksTable, input.toMap());
 
     final newTask = Task(
+      taskPiriority: input.taskPiriority,
       isCompleted: false,
       taskNote: input.taskNote,
       id: id,

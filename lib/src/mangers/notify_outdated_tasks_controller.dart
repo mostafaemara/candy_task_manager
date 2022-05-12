@@ -39,7 +39,7 @@ class NotifyOutdatedTaskController {
       final tasks = await _tasksRepository.readOutdatedTasks();
 
       final lang = _configRepo.readLanguage();
-      final locale = Locale(lang);
+      final locale = Locale(lang.code);
       AppLocalizations t = await AppLocalizations.delegate.load(locale);
       for (final task in tasks) {
         await _notificationManger.showNotification(

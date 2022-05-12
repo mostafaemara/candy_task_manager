@@ -3,9 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:task_manger/src/bloc/config/config_cubit.dart';
+import 'package:task_manger/src/bloc/config/config_state.dart';
 import 'package:task_manger/src/bloc/new_task/new_task_cubit.dart';
 import 'package:task_manger/src/bloc/notification/notification_cubit.dart';
-import 'package:task_manger/src/bloc/splash/splash_bloc.dart';
 import 'package:task_manger/src/bloc/tasks/tasks_cubit.dart';
 import 'package:task_manger/src/data/repositories/config_repository.dart';
 
@@ -48,14 +49,17 @@ void main() async {
     // The top level function, aka callbackDispatcher
   );
 
-  await _workManger.cancelAll();
   await _workManger.registerPeriodicTask(
       "notify_outdated_task", "Notify Outdated Tasks",
-      initialDelay: const Duration(seconds: 20),
-      frequency: const Duration(minutes: 15));
+      existingWorkPolicy: ExistingWorkPolicy.keep,
+      frequency: const Duration(days: 1));
+
+  final _lang = _configRepo.readLanguage();
+  final _themeMode = _configRepo.readTheme();
   runApp(MultiBlocProvider(providers: [
     BlocProvider(
-      create: (context) => SplashCubit(),
+      create: (context) => ConfigCubit(
+          _configRepo, ConfigState(language: _lang, themeMode: _themeMode)),
     ),
     BlocProvider(
       create: (context) =>

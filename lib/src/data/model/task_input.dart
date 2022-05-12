@@ -1,7 +1,10 @@
 import 'dart:convert';
 
+import 'package:task_manger/src/data/model/task.dart';
+
 class TaskInput {
   TaskInput({
+    required this.taskPiriority,
     required this.taskNote,
     required this.notificationTitle,
     required this.date,
@@ -10,12 +13,13 @@ class TaskInput {
 
   final String taskNote;
   final String notificationTitle;
-
+  final TaskPiriority taskPiriority;
   final DateTime date;
   final bool isAlarm;
 
   Map<String, dynamic> toMap() {
     return {
+      "priority": taskPiriority.value,
       'taskNote': taskNote,
       'date': date.toIso8601String(),
       'isAlarm': isAlarm ? 1 : 0,

@@ -12,6 +12,7 @@ class TasksCubit extends Cubit<TasksState> {
       : super(const TasksState.init()) {
     _taskRepository.onTasksChange.listen((event) {
       init();
+      log("new Task");
     });
   }
 
@@ -29,7 +30,14 @@ class TasksCubit extends Cubit<TasksState> {
     }
   }
 
-  void markAsCompleted(int id) async {
+  void marUpcomingTaskAsCompleted(int id) async {
+    await _taskRepository.markTaskAsComplete(id);
+    final tasksOfDates = await _taskRepository.readUpCommingTasks();
+    await _notificationManger.cancelNotification(id);
+    emit(state.copyWith(tasksOfDate: tasksOfDates));
+  }
+
+  void markTodayTaskAsCompleted(int id) async {
     final task = state.todayTasks.firstWhere((element) => element.id == id);
     if (task.isCompleted) {
       return;

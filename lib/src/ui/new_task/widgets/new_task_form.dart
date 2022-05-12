@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:task_manger/src/bloc/new_task/new_task_cubit.dart';
 import 'package:task_manger/src/bloc/submission_state.dart';
+import 'package:task_manger/src/data/model/task.dart';
 import 'package:task_manger/src/data/model/task_input.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -29,7 +30,7 @@ class _NewTaskFormState extends State<NewTaskForm> {
   final TextEditingController _dateController = TextEditingController();
 
   final _key = GlobalKey<FormState>();
-
+  TaskPiriority _taskPriority = TaskPiriority.medium;
   bool _isAlarm = true;
 
   @override
@@ -65,6 +66,47 @@ class _NewTaskFormState extends State<NewTaskForm> {
                                 DateFormField(
                                   controller: _dateController,
                                 ),
+                                const SizedBox(
+                                  height: 16,
+                                ),
+                                FormFieldLabel(
+                                    label:
+                                        AppLocalizations.of(context)!.priority),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                DropdownButtonFormField<TaskPiriority>(
+                                    value: _taskPriority,
+                                    items: [
+                                      DropdownMenuItem<TaskPiriority>(
+                                          value: TaskPiriority.high,
+                                          child: TaskPriorityItem(
+                                            title: AppLocalizations.of(context)!
+                                                .high,
+                                            color: Colors.red,
+                                          )),
+                                      DropdownMenuItem<TaskPiriority>(
+                                          value: TaskPiriority.medium,
+                                          child: TaskPriorityItem(
+                                            title: AppLocalizations.of(context)!
+                                                .medium,
+                                            color: Colors.green,
+                                          )),
+                                      DropdownMenuItem<TaskPiriority>(
+                                          value: TaskPiriority.low,
+                                          child: TaskPriorityItem(
+                                            title: AppLocalizations.of(context)!
+                                                .low,
+                                            color: Colors.grey,
+                                          )),
+                                    ],
+                                    onChanged: (v) {
+                                      setState(() {
+                                        if (v != null) {
+                                          _taskPriority = v;
+                                        }
+                                      });
+                                    }),
                                 const SizedBox(
                                   height: 48,
                                 ),
@@ -108,6 +150,7 @@ class _NewTaskFormState extends State<NewTaskForm> {
     if (_key.currentState!.validate()) {
       _key.currentState!.save();
       context.read<NewTaskCubit>().addNewTask(TaskInput(
+          taskPiriority: _taskPriority,
           taskNote: _taskNoteController.text,
           date: DateTime.parse(_dateController.text),
           isAlarm: _isAlarm,
@@ -119,5 +162,40 @@ class _NewTaskFormState extends State<NewTaskForm> {
     setState(() {
       _isAlarm = value;
     });
+  }
+}
+
+class TaskPriorityItem extends StatelessWidget {
+  const TaskPriorityItem({
+    Key? key,
+    required this.title,
+    required this.color,
+  }) : super(key: key);
+  final String title;
+  final Color color;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            height: 25,
+            width: 25,
+            decoration: BoxDecoration(
+                color: color, borderRadius: BorderRadius.circular(25)),
+          ),
+          const SizedBox(
+            width: 15,
+          ),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontWeight: FontWeight.w500,
+                height: 1.5,
+                color: Theme.of(context).colorScheme.onSurface),
+          ),
+        ]);
   }
 }

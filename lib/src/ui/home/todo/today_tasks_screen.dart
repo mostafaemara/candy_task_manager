@@ -45,9 +45,8 @@ class _TodayTasksScreenState extends State<TodayTasksScreen> {
                       itemBuilder: (context, index) => TaskListItem(
                           task: state.todayTasks[index],
                           onChange: (value) {
-                            context
-                                .read<TasksCubit>()
-                                .markAsCompleted(state.todayTasks[index].id);
+                            context.read<TasksCubit>().markTodayTaskAsCompleted(
+                                state.todayTasks[index].id);
                           }),
                     ),
         ))

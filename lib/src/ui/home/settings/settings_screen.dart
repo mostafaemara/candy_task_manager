@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:task_manger/src/bloc/config/config_cubit.dart';
+import 'package:task_manger/src/bloc/config/config_state.dart';
+import 'package:task_manger/src/data/model/language.dart';
 import 'package:task_manger/src/ui/common/check_box_list_tile.dart';
-
+import "package:task_manger/src/data/model/theme_mode.dart" as app;
 import 'package:task_manger/src/ui/common/custom_app_bar.dart';
 import 'package:task_manger/src/ui/common/header.dart';
 import 'package:task_manger/src/ui/common/subtitle.dart';
@@ -18,32 +22,46 @@ class SettingsScreen extends StatelessWidget {
             title: AppLocalizations.of(context)!.settings.toUpperCase(),
             actions: const []),
         Header(title: AppLocalizations.of(context)!.settings),
-        Padding(
-          padding: const EdgeInsetsDirectional.only(start: 32, end: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 10,
-              ),
-              Subtitle(title: AppLocalizations.of(context)!.language),
-              const SizedBox(
-                height: 16,
-              ),
-              const ListTile(
-                title: Subtitle(title: "English"),
-                trailing: Icon(Icons.language),
-              ),
-              const ListTile(
-                title: Subtitle(title: "العربية"),
-                trailing: Icon(Icons.language),
-              ),
-              CheckBoxListTile(
-                title: AppLocalizations.of(context)!.darkTheme,
-                onChange: (v) {},
-                value: true,
-              ),
-            ],
+        BlocBuilder<ConfigCubit, ConfigState>(
+          builder: (context, state) => Padding(
+            padding: const EdgeInsetsDirectional.only(start: 32, end: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 10,
+                ),
+                Subtitle(title: AppLocalizations.of(context)!.language),
+                const SizedBox(
+                  height: 16,
+                ),
+                ListTile(
+                  onTap: () {
+                    context
+                        .read<ConfigCubit>()
+                        .changeLanguage(Language.english);
+                  },
+                  selected: state.language == Language.english,
+                  selectedColor: Theme.of(context).colorScheme.onPrimary,
+                  title: const Text("English"),
+                  trailing: const Icon(Icons.language),
+                ),
+                ListTile(
+                  onTap: () {
+                    context.read<ConfigCubit>().changeLanguage(Language.arabic);
+                  },
+                  selected: state.language == Language.arabic,
+                  selectedColor: Theme.of(context).colorScheme.onPrimary,
+                  title: const Text("العربية"),
+                  trailing: const Icon(Icons.language),
+                ),
+                CheckBoxListTile(
+                  title: AppLocalizations.of(context)!.darkTheme,
+                  onChange: context.read<ConfigCubit>().onToggleThemeMode,
+                  value: state.themeMode == app.ThemeMode.dark,
+                ),
+              ],
+            ),
           ),
         ),
       ],

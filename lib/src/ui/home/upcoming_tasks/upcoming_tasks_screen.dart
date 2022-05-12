@@ -73,7 +73,12 @@ class UpComingTasks extends StatelessWidget {
         ...List.generate(
             tasksOfDate.tasks.length,
             (index) => TaskListItem(
-                task: tasksOfDate.tasks[index], onChange: (value) {})).toList()
+                task: tasksOfDate.tasks[index],
+                onChange: (value) {
+                  context
+                      .read<TasksCubit>()
+                      .marUpcomingTaskAsCompleted(tasksOfDate.tasks[index].id);
+                })).toList()
       ],
     );
   }

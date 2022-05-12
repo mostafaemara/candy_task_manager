@@ -15,6 +15,18 @@ class AppColors {
       onBackground: darkBlue,
       surface: Colors.white,
       onSurface: darkBlue);
+  static const darkColorSchema = ColorScheme(
+      brightness: Brightness.dark,
+      primary: Color.fromARGB(255, 255, 255, 255),
+      onPrimary: darkBlue,
+      secondary: darkBlue,
+      onSecondary: Colors.white,
+      error: Colors.red,
+      onError: Colors.white,
+      background: Color(0xffFFEEEE),
+      onBackground: darkBlue,
+      surface: Colors.white,
+      onSurface: darkBlue);
 
   static const aquamarine = Color(0xff93FFDF);
 }
