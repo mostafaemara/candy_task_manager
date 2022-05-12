@@ -25,14 +25,6 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const HomeScreen());
     },
-    LoginRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
-          routeData: routeData, child: const LoginScreen());
-    },
-    SignupRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
-          routeData: routeData, child: const SignupScreen());
-    },
     NewTaskRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const NewTaskScreen());
@@ -41,21 +33,21 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const EditeProfileScreen());
     },
-    TodoRoute.name: (routeData) {
+    TodayTasksRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: const TodoScreen());
+          routeData: routeData, child: const TodayTasksScreen());
     },
-    SchedulerRoute.name: (routeData) {
+    UpcomingTasksRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: const SchedulerScreen());
+          routeData: routeData, child: const UpcomingTasksScreen());
     },
     NotificationsRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const NotificationsScreen());
     },
-    ProfileRoute.name: (routeData) {
+    SettingsRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: const ProfileScreen());
+          routeData: routeData, child: const SettingsScreen());
     }
   };
 
@@ -63,17 +55,15 @@ class _$AppRouter extends RootStackRouter {
   List<RouteConfig> get routes => [
         RouteConfig(SplashRoute.name, path: '/'),
         RouteConfig(HomeRoute.name, path: '/home-screen', children: [
-          RouteConfig(TodoRoute.name,
-              path: 'todo-screen', parent: HomeRoute.name),
-          RouteConfig(SchedulerRoute.name,
-              path: 'scheduler-screen', parent: HomeRoute.name),
+          RouteConfig(TodayTasksRoute.name,
+              path: 'today-tasks-screen', parent: HomeRoute.name),
+          RouteConfig(UpcomingTasksRoute.name,
+              path: 'upcoming-tasks-screen', parent: HomeRoute.name),
           RouteConfig(NotificationsRoute.name,
               path: 'notifications-screen', parent: HomeRoute.name),
-          RouteConfig(ProfileRoute.name,
-              path: 'profile-screen', parent: HomeRoute.name)
+          RouteConfig(SettingsRoute.name,
+              path: 'settings-screen', parent: HomeRoute.name)
         ]),
-        RouteConfig(LoginRoute.name, path: '/login-screen'),
-        RouteConfig(SignupRoute.name, path: '/signup-screen'),
         RouteConfig(NewTaskRoute.name, path: '/new-task-screen'),
         RouteConfig(EditeProfileRoute.name, path: '/edite-profile-screen')
       ];
@@ -97,22 +87,6 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [LoginScreen]
-class LoginRoute extends PageRouteInfo<void> {
-  const LoginRoute() : super(LoginRoute.name, path: '/login-screen');
-
-  static const String name = 'LoginRoute';
-}
-
-/// generated route for
-/// [SignupScreen]
-class SignupRoute extends PageRouteInfo<void> {
-  const SignupRoute() : super(SignupRoute.name, path: '/signup-screen');
-
-  static const String name = 'SignupRoute';
-}
-
-/// generated route for
 /// [NewTaskScreen]
 class NewTaskRoute extends PageRouteInfo<void> {
   const NewTaskRoute() : super(NewTaskRoute.name, path: '/new-task-screen');
@@ -130,19 +104,21 @@ class EditeProfileRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [TodoScreen]
-class TodoRoute extends PageRouteInfo<void> {
-  const TodoRoute() : super(TodoRoute.name, path: 'todo-screen');
+/// [TodayTasksScreen]
+class TodayTasksRoute extends PageRouteInfo<void> {
+  const TodayTasksRoute()
+      : super(TodayTasksRoute.name, path: 'today-tasks-screen');
 
-  static const String name = 'TodoRoute';
+  static const String name = 'TodayTasksRoute';
 }
 
 /// generated route for
-/// [SchedulerScreen]
-class SchedulerRoute extends PageRouteInfo<void> {
-  const SchedulerRoute() : super(SchedulerRoute.name, path: 'scheduler-screen');
+/// [UpcomingTasksScreen]
+class UpcomingTasksRoute extends PageRouteInfo<void> {
+  const UpcomingTasksRoute()
+      : super(UpcomingTasksRoute.name, path: 'upcoming-tasks-screen');
 
-  static const String name = 'SchedulerRoute';
+  static const String name = 'UpcomingTasksRoute';
 }
 
 /// generated route for
@@ -155,9 +131,9 @@ class NotificationsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [ProfileScreen]
-class ProfileRoute extends PageRouteInfo<void> {
-  const ProfileRoute() : super(ProfileRoute.name, path: 'profile-screen');
+/// [SettingsScreen]
+class SettingsRoute extends PageRouteInfo<void> {
+  const SettingsRoute() : super(SettingsRoute.name, path: 'settings-screen');
 
-  static const String name = 'ProfileRoute';
+  static const String name = 'SettingsRoute';
 }

@@ -10,35 +10,45 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:task_manger/src/ui/common/custom_app_bar.dart';
 import 'package:task_manger/src/ui/common/header.dart';
-import 'package:task_manger/src/ui/common/search_button.dart';
 import 'package:task_manger/src/ui/common/subtitle.dart';
 import 'package:task_manger/src/ui/common/task_list_item.dart';
+import 'package:task_manger/src/utils/images.dart';
 
-class SchedulerScreen extends StatefulWidget {
-  const SchedulerScreen({Key? key}) : super(key: key);
+class UpcomingTasksScreen extends StatefulWidget {
+  const UpcomingTasksScreen({Key? key}) : super(key: key);
 
   @override
-  State<SchedulerScreen> createState() => _SchedulerScreenState();
+  State<UpcomingTasksScreen> createState() => _UpcomingTasksScreenState();
 }
 
-class _SchedulerScreenState extends State<SchedulerScreen> {
+class _UpcomingTasksScreenState extends State<UpcomingTasksScreen> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
         child: Column(
       children: [
         CustomAppBar(
-          actions: [SearchButton(onPressed: () {})],
           title: AppLocalizations.of(context)!.scheduler.toUpperCase(),
         ),
         Header(title: AppLocalizations.of(context)!.upcomingTasks),
         Expanded(
             child: BlocBuilder<TasksCubit, TasksState>(
-          builder: (context, state) => ListView.builder(
-            itemCount: state.tasksOfDate.length,
-            itemBuilder: (context, index) =>
-                UpComingTasks(tasksOfDate: state.tasksOfDate[index]),
-          ),
+          builder: (context, state) => state.isLoading
+              ? CircularProgressIndicator(
+                  color: Theme.of(context).colorScheme.secondary,
+                )
+              : state.todayTasks.isEmpty
+                  ? Center(
+                      child: Image.asset(
+                        Images.emptyTasks,
+                        width: 150,
+                      ),
+                    )
+                  : ListView.builder(
+                      itemCount: state.tasksOfDate.length,
+                      itemBuilder: (context, index) =>
+                          UpComingTasks(tasksOfDate: state.tasksOfDate[index]),
+                    ),
         ))
       ],
     ));

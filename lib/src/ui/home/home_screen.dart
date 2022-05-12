@@ -12,11 +12,11 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
       routes: const [
-        TodoRoute(),
-        SchedulerRoute(),
-        SchedulerRoute(),
+        TodayTasksRoute(),
+        UpcomingTasksRoute(),
+        UpcomingTasksRoute(),
         NotificationsRoute(),
-        ProfileRoute()
+        SettingsRoute()
       ],
       bottomNavigationBuilder: (_, router) => AppBottomNavBar(
         currentIndex: router.activeIndex,

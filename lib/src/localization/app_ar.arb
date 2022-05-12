@@ -7,6 +7,7 @@
   "completeBy": "اكتمل بحلول",
   "confirmPassword": "تأكيد كلمة المرور",
   "confrimPasswordRequired": "تأكيد كلمة المرور مطلوب",
+  "darkTheme": "المظهر الداكن",
   "dateInvalid": "تاريخ غير صالح",
   "dateRequired": "حدد تاريخ",
   "email": "البريد الالكتروني",
@@ -15,11 +16,13 @@
   "fieldRequired": "حقل مطلوب",
   "forgotPassword": "نسيت كلمة المرور؟",
   "haveAccount": "هل لديك حساب؟ سجل الدخول",
+  "language": "اللغة",
   "login": "تسجيل دخول",
   "moreOptions": "المزيد من الخيارات",
   "newTask": "مهمة جديدة",
   "newUserRegister": "ليس لديك حساب؟ أنشئ حسابًا",
   "notifications": "إشعارات",
+  "outDatedTask": "مهمة لم تنجز تحتاج إلى اهتمامك",
   "password": "كلمة المرور",
   "passwordNotMatch": "كلمة المرور غير متطابقة",
   "passwordRequired": "أدخل كلمة المرور",
@@ -30,6 +33,7 @@
   "saveAsAlarm": "حفظ كمنبه",
   "scheduler": "المجدول",
   "selectDate": " اختر التاريخ",
+  "settings": " الإعدادات",
   "showAsNotification": "اظهر كإشعار",
   "splashTitle": "مدير مهام سهل الاستخدام",
   "termsAndPolicies": "بالتسجيل ، فإنك تقبل تلقائيًا شروط وسياسات التطبيق",
@@ -37,5 +41,6 @@
   "todo": "المهام",
   "tomorrow": " غداً",
   "upcomingTasks": "المهام القادمة -",
-  "writeHere": "اكتب هنا…."
+  "writeHere": "اكتب هنا….",
+  "youTaskToComplete": "لديك مهمة لإنها"
 }

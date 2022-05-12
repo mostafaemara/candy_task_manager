@@ -1,20 +1,20 @@
 import 'dart:convert';
 
 class Task {
-  Task(
-      {required this.isCompleted,
-      required this.taskNote,
-      required this.id,
-      required this.date,
-      required this.isAlarm,
-      required this.isNotification});
+  Task({
+    required this.isCompleted,
+    required this.taskNote,
+    required this.id,
+    required this.date,
+    required this.isAlarm,
+  });
 
   final bool isCompleted;
   final String taskNote;
 
   final DateTime date;
   final bool isAlarm;
-  final bool isNotification;
+
   final int id;
 
   Map<String, dynamic> toMap() {
@@ -23,7 +23,6 @@ class Task {
       'taskNote': taskNote,
       'date': date.toIso8601String(),
       'isAlarm': isAlarm,
-      'isNotification': isNotification,
       'id': id,
     };
   }
@@ -34,7 +33,6 @@ class Task {
       taskNote: map['taskNote'],
       date: DateTime.parse(map['date']),
       isAlarm: map['isAlarm'] == 1 ? true : false,
-      isNotification: map['isNotification'] == 1 ? true : false,
       id: map['id']?.toInt(),
     );
   }
@@ -55,7 +53,6 @@ class Task {
         taskNote: taskNote ?? this.taskNote,
         date: date ?? this.date,
         isAlarm: isAlarm ?? this.isAlarm,
-        isNotification: isNotification ?? this.isNotification,
         id: id);
   }
 }

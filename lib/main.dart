@@ -3,21 +3,20 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:task_manger/src/bloc/login/login_cubit.dart';
 import 'package:task_manger/src/bloc/new_task/new_task_cubit.dart';
 import 'package:task_manger/src/bloc/notification/notification_cubit.dart';
-import 'package:task_manger/src/bloc/signup/signup_cubit.dart';
 import 'package:task_manger/src/bloc/splash/splash_bloc.dart';
 import 'package:task_manger/src/bloc/tasks/tasks_cubit.dart';
-
-import 'package:task_manger/src/data/repositories/auth_repository.dart';
+import 'package:task_manger/src/data/repositories/config_repository.dart';
 
 import 'package:task_manger/src/data/repositories/notification_repository.dart';
 import 'package:task_manger/src/data/repositories/task_repository.dart';
-import 'package:task_manger/src/data/repositories/user_repository.dart';
+
 import 'package:task_manger/src/data/sqlite_helper.dart';
 import 'package:task_manger/src/mangers/notification_manger.dart';
-import 'package:task_manger/src/mangers/tasks_manger.dart';
+import 'package:task_manger/src/mangers/notify_outdated_tasks_controller.dart';
+import 'package:workmanager/workmanager.dart';
+
 import 'src/app.dart';
 
 import "src/data/model/notification.dart" as not;
@@ -25,7 +24,11 @@ import "src/data/model/notification.dart" as not;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  final _sharedPref = await SharedPreferences.getInstance();
+
+  final _configRepo = ConfigRepository(_sharedPref);
   final _sqlHelper = SqliteHelper();
+  final _workManger = Workmanager();
   final _sqlDb = await _sqlHelper.initDb();
   final _tasksRepository = TaskRepository(_sqlDb);
   final _notificationRepository = Notificationrepository(_sqlDb);
@@ -33,35 +36,42 @@ void main() async {
       NotificationManger(onNotificationDisplay: (id, title, body) async {
     await _notificationRepository
         .addNotification(not.Notification(id: id, body: body, title: title));
-  }, onSelectNotification: (id, action) {
-    log("Action " + id.toString() + action.toString());
+  }, onSelectNotification: (id, action) async {
+    if (action == NotificationAction.complete) {
+      await _tasksRepository.markTaskAsComplete(id);
+      log(action.toString());
+    }
   });
   await _notificationManger.initialize();
+  _workManger.initialize(
+    callbackDispatcher,
+    // The top level function, aka callbackDispatcher
+  );
 
-  final _db = await SharedPreferences.getInstance();
-  final _userRepo = UserRepository(_db);
-  final _authRepo = AuthRepository(_userRepo);
-
-  final _taskManger = TaskManger(_tasksRepository, _notificationManger);
-
+  await _workManger.cancelAll();
+  await _workManger.registerPeriodicTask(
+      "notify_outdated_task", "Notify Outdated Tasks",
+      initialDelay: const Duration(seconds: 20),
+      frequency: const Duration(minutes: 15));
   runApp(MultiBlocProvider(providers: [
     BlocProvider(
-      create: (context) => SplashCubit(_userRepo),
+      create: (context) => SplashCubit(),
     ),
     BlocProvider(
-      create: (context) => LoginCubit(_authRepo),
+      create: (context) =>
+          TasksCubit(_tasksRepository, _notificationManger)..init(),
     ),
     BlocProvider(
-      create: (context) => SignupCubit(_authRepo),
-    ),
-    BlocProvider(
-      create: (context) => TasksCubit(_taskManger)..init(),
-    ),
-    BlocProvider(
-      create: (context) => NewTaskCubit(_taskManger),
+      create: (context) => NewTaskCubit(_tasksRepository, _notificationManger),
     ),
     BlocProvider(
       create: (context) => NotificationCubit(_notificationRepository)..init(),
     ),
   ], child: TaskMangerApp()));
+}
+
+void callbackDispatcher() {
+  Workmanager().executeTask((task, inputData) async {
+    return await NotifyOutdatedTaskController.execute();
+  });
 }

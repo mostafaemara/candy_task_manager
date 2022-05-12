@@ -1,24 +1,24 @@
 import 'dart:convert';
 
 class TaskInput {
-  TaskInput(
-      {required this.taskNote,
-      required this.date,
-      required this.isAlarm,
-      required this.isNotification});
+  TaskInput({
+    required this.taskNote,
+    required this.notificationTitle,
+    required this.date,
+    required this.isAlarm,
+  });
 
   final String taskNote;
+  final String notificationTitle;
 
   final DateTime date;
   final bool isAlarm;
-  final bool isNotification;
 
   Map<String, dynamic> toMap() {
     return {
       'taskNote': taskNote,
       'date': date.toIso8601String(),
       'isAlarm': isAlarm ? 1 : 0,
-      'isNotification': isNotification ? 1 : 0,
       "isCompleted": 0
     };
   }

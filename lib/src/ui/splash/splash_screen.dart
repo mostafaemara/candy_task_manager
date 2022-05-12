@@ -62,10 +62,6 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _handleAuthState(BuildContext context, AuthState state) async {
-    if (state == AuthState.auth) {
-      AutoRouter.of(context).replace(const HomeRoute());
-    } else {
-      AutoRouter.of(context).replace(const LoginRoute());
-    }
+    AutoRouter.of(context).replace(const HomeRoute());
   }
 }

@@ -7,6 +7,7 @@
   "completeBy": "Complete by",
   "confirmPassword": "Confirm Password",
   "confrimPasswordRequired": "confirm password is required",
+  "darkTheme": "Dark Theme",
   "dateInvalid": "Invalid date",
   "dateRequired": "Select date",
   "email": "Email",
@@ -15,11 +16,13 @@
   "fieldRequired": "field required",
   "forgotPassword": "Forgot password?",
   "haveAccount": "Have account? Log In",
+  "language": "Language",
   "login": "Login",
   "moreOptions": "More Options",
   "newTask": "New Task",
   "newUserRegister": "New User? Register Here",
   "notifications": "Notifications",
+  "outDatedTask": "Missed Task Need Your Attention",
   "password": "Password",
   "passwordNotMatch": "Password is not match",
   "passwordRequired": "Enter password",
@@ -30,6 +33,7 @@
   "saveAsAlarm": "Save as alarm",
   "scheduler": "Scheduler",
   "selectDate": "Select a date",
+  "settings": "Settings",
   "showAsNotification": "Show as notification",
   "splashTitle": "Simple Task Manger",
   "termsAndPolicies": "By registering, you automatically accept the Terms & Policies of candy app.",
@@ -37,5 +41,6 @@
   "todo": "TO-DO",
   "tomorrow": "Tomorrow",
   "upcomingTasks": "Upcoming tasks —",
-  "writeHere": "Write here…."
+  "writeHere": "Write here….",
+  "youTaskToComplete": "You Have Task To Finish!"
 }

@@ -3,18 +3,20 @@ import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:task_manger/src/data/repositories/task_repository.dart';
+import 'package:task_manger/src/mangers/notification_manger.dart';
 
 import 'tasks.state.dart';
 
 class TasksCubit extends Cubit<TasksState> {
-  TasksCubit(this._taskRepository) : super(const TasksState.init()) {
+  TasksCubit(this._taskRepository, this._notificationManger)
+      : super(const TasksState.init()) {
     _taskRepository.onTasksChange.listen((event) {
       init();
     });
   }
 
   final TaskRepository _taskRepository;
-
+  final NotificationManger _notificationManger;
   void init() async {
     try {
       final tasks = await _taskRepository.readTodayTasks();
@@ -33,11 +35,11 @@ class TasksCubit extends Cubit<TasksState> {
       return;
     }
     final newTask = task.copyWith(isCompleted: true);
-    await _taskRepository.updateTask(newTask);
+    await _taskRepository.markTaskAsComplete(id);
     final newTasks = [...state.todayTasks];
     newTasks.removeWhere((element) => element.id == id);
     newTasks.add(newTask);
-
+    await _notificationManger.cancelNotification(id);
     emit(state.copyWith(todayTasks: newTasks));
   }
 }

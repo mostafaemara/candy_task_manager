@@ -32,8 +32,6 @@ class _NewTaskFormState extends State<NewTaskForm> {
 
   bool _isAlarm = true;
 
-  bool _isNotification = true;
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NewTaskCubit, SubmissionState>(
@@ -81,11 +79,6 @@ class _NewTaskFormState extends State<NewTaskForm> {
                                     title: AppLocalizations.of(context)!
                                         .saveAsAlarm,
                                     onChange: _onIsAlarmChange),
-                                CheckBoxListTile(
-                                    value: _isNotification,
-                                    title: AppLocalizations.of(context)!
-                                        .showAsNotification,
-                                    onChange: _onIsNotificationChange),
                               ],
                             ),
                           ),
@@ -118,19 +111,13 @@ class _NewTaskFormState extends State<NewTaskForm> {
           taskNote: _taskNoteController.text,
           date: DateTime.parse(_dateController.text),
           isAlarm: _isAlarm,
-          isNotification: _isNotification));
+          notificationTitle: AppLocalizations.of(context)!.youTaskToComplete));
     }
   }
 
   void _onIsAlarmChange(bool value) {
     setState(() {
       _isAlarm = value;
-    });
-  }
-
-  void _onIsNotificationChange(bool value) {
-    setState(() {
-      _isNotification = value;
     });
   }
 }

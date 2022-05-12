@@ -46,7 +46,7 @@ class NotificationManger {
       await _awesomeNotifications.requestPermissionToSendNotifications();
     }
     if (onNotificationDisplay != null) {
-      _awesomeNotifications.displayedStream.listen((event) {
+      _awesomeNotifications.displayedStream.listen((event) async {
         onNotificationDisplay!(event.id!, event.title!, event.body!);
       });
     }
@@ -62,17 +62,37 @@ class NotificationManger {
     }
   }
 
+  Future cancelNotification(int id) => _awesomeNotifications.cancel(id);
+
   Future showNotification(
       {required int id,
       required String title,
       required String body,
-      required String payload}) async {}
+      required String payload}) async {
+    await _awesomeNotifications.createNotification(
+      content: NotificationContent(
+        id: id,
+        channelKey: 'candy_task_manger_mse_schd_notify',
+        title: title,
+        body: body,
+        wakeUpScreen: true,
+        criticalAlert: true,
+        category: NotificationCategory.Message,
+        displayOnBackground: true,
+        displayOnForeground: true,
+        notificationLayout: NotificationLayout.Default,
+      ),
+      actionButtons: [
+        NotificationActionButton(key: 'complete', label: "complete"),
+        NotificationActionButton(key: 'cancel', label: 'cancel'),
+      ],
+    );
+  }
 
   Future scheduleNotification(
       {required int id,
       required String title,
       required String body,
-      required String payload,
       required DateTime date,
       bool isAlarm = false}) async {
     try {
@@ -97,7 +117,11 @@ class NotificationManger {
           NotificationActionButton(key: 'complete', label: "complete"),
           NotificationActionButton(key: 'cancel', label: 'cancel'),
         ],
-        schedule: NotificationCalendar.fromDate(date: date),
+        schedule: NotificationCalendar.fromDate(
+            date: date,
+            allowWhileIdle: true,
+            preciseAlarm: true,
+            repeats: true),
       );
     } catch (e) {
       log(e.toString());

@@ -20,7 +20,7 @@ class Notificationrepository {
       notifications.add(Notification.fromMap(map));
     }
 
-    return notifications;
+    return notifications.reversed.toList();
   }
 
   Future<void> deleteNotification(String id) async {

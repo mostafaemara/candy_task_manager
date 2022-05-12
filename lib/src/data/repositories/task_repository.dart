@@ -49,21 +49,30 @@ class TaskRepository {
     final id = await _db.insert(SqliteHelper.tasksTable, input.toMap());
 
     final newTask = Task(
-        isCompleted: false,
-        taskNote: input.taskNote,
-        id: id,
-        date: input.date,
-        isAlarm: input.isAlarm,
-        isNotification: input.isNotification);
+      isCompleted: false,
+      taskNote: input.taskNote,
+      id: id,
+      date: input.date,
+      isAlarm: input.isAlarm,
+    );
 
     _controller.add(id);
 
     return newTask;
   }
 
-  Future<void> updateTask(Task task) async {
-    await _db.update(SqliteHelper.tasksTable, task.toMap(),
-        where: 'id = ?', whereArgs: [task.id]);
+  Future<void> markTaskAsComplete(int id) async {
+    await _db.update(SqliteHelper.tasksTable, {'isCompleted': 1},
+        where: 'id = ?', whereArgs: [id]);
+  }
+
+  Future<List<Task>> readOutdatedTasks() async {
+    final maps = await _db.query(SqliteHelper.tasksTable);
+
+    final tasks = _mapListToTasks(maps);
+    tasks.retainWhere((element) =>
+        (element.date.isBefore(DateTime.now()) && !element.isCompleted));
+    return tasks;
   }
 
   Future<void> deleteTask(String id) async {

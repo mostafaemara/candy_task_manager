@@ -9,7 +9,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:task_manger/src/styles/colors.dart';
 import 'package:task_manger/src/ui/common/custom_app_bar.dart';
 import 'package:task_manger/src/ui/common/header.dart';
-import 'package:task_manger/src/ui/common/search_button.dart';
 import 'package:task_manger/src/utils/images.dart';
 
 class NotificationsScreen extends StatefulWidget {
@@ -23,28 +22,34 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NotificationCubit, NotificationState>(
-        builder: (context, state) => state.isLoading
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
-            : SizedBox(
+        builder: (context, state) => SizedBox(
                 child: Column(
-                children: [
-                  CustomAppBar(
-                    actions: [SearchButton(onPressed: () {})],
-                    title: AppLocalizations.of(context)!
-                        .notifications
-                        .toUpperCase(),
-                  ),
-                  Header(title: AppLocalizations.of(context)!.alerts),
-                  Expanded(
-                      child: ListView.builder(
-                    itemCount: state.notifications.length,
-                    itemBuilder: (context, index) =>
-                        _AlertListItem(title: state.notifications[index].title),
-                  ))
-                ],
-              )));
+              children: [
+                CustomAppBar(
+                  title:
+                      AppLocalizations.of(context)!.notifications.toUpperCase(),
+                ),
+                Header(title: AppLocalizations.of(context)!.alerts),
+                Expanded(
+                    child: state.isLoading
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : state.notifications.isEmpty
+                            ? Center(
+                                child: Image.asset(
+                                  Images.emptyNotifications,
+                                  width: 150,
+                                ),
+                              )
+                            : ListView.builder(
+                                itemCount: state.notifications.length,
+                                itemBuilder: (context, index) => _AlertListItem(
+                                    title:
+                                        "${state.notifications[index].title} : ${state.notifications[index].body}"),
+                              ))
+              ],
+            )));
   }
 }
 
