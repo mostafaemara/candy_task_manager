@@ -1,13 +1,14 @@
 import 'dart:developer';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:task_manger/src/data/model/notification.dart';
 
 enum NotificationAction { complete, cancel }
 
 class NotificationManger {
   final _awesomeNotifications = AwesomeNotifications();
   final void Function(int id, NotificationAction action)? onSelectNotification;
-  final void Function(int id, String title, String body)? onNotificationDisplay;
+  final void Function(Notification notification)? onNotificationDisplay;
 
   NotificationManger({this.onNotificationDisplay, this.onSelectNotification});
 
@@ -47,7 +48,7 @@ class NotificationManger {
     }
     if (onNotificationDisplay != null) {
       _awesomeNotifications.displayedStream.listen((event) async {
-        onNotificationDisplay!(event.id!, event.title!, event.body!);
+        onNotificationDisplay!(Notification.fromStringMap(event.payload ?? {}));
       });
     }
 
@@ -64,19 +65,18 @@ class NotificationManger {
 
   Future cancelNotification(int id) => _awesomeNotifications.cancel(id);
 
-  Future showNotification(
-      {required int id,
-      required String title,
-      required String body,
-      required String payload}) async {
+  Future showNotification({
+    required Notification notification,
+  }) async {
     await _awesomeNotifications.createNotification(
       content: NotificationContent(
-        id: id,
+        id: notification.id,
         channelKey: 'candy_task_manger_mse_schd_notify',
-        title: title,
-        body: body,
+        title: notification.title,
+        body: notification.body,
         wakeUpScreen: true,
         criticalAlert: true,
+        payload: notification.toStringMap(),
         category: NotificationCategory.Message,
         displayOnBackground: true,
         displayOnForeground: true,
@@ -90,22 +90,21 @@ class NotificationManger {
   }
 
   Future scheduleNotification(
-      {required int id,
-      required String title,
-      required String body,
+      {required Notification notification,
       required DateTime date,
       bool isAlarm = false}) async {
     try {
       await _awesomeNotifications.createNotification(
         content: NotificationContent(
-          id: id,
+          id: notification.id,
           channelKey: isAlarm
               ? 'candy_task_manger_mse_schd_alarm'
               : 'candy_task_manger_mse_schd_notify',
-          title: title,
-          body: body,
+          title: notification.title,
+          body: notification.body,
           wakeUpScreen: true,
           criticalAlert: true,
+          payload: notification.toStringMap(),
           category: isAlarm
               ? NotificationCategory.Call
               : NotificationCategory.Message,

@@ -29,7 +29,7 @@ class _AppBottomNavBarState extends State<AppBottomNavBar>
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      color: Theme.of(context).colorScheme.primary,
+      color: Theme.of(context).colorScheme.background,
       child: TabBar(
           onTap: (index) {
             if (index == 2) {

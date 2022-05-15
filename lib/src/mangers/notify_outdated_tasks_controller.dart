@@ -26,9 +26,8 @@ class NotifyOutdatedTaskController {
       final _tasksRepository = TaskRepository(_sqlDb);
       final _notificationRepository = Notificationrepository(_sqlDb);
       final NotificationManger _notificationManger =
-          NotificationManger(onNotificationDisplay: (id, title, body) async {
-        await _notificationRepository.addNotification(
-            not.Notification(id: id, body: body, title: title));
+          NotificationManger(onNotificationDisplay: (notification) async {
+        await _notificationRepository.addNotification(notification);
       }, onSelectNotification: (id, action) async {
         if (action == NotificationAction.complete) {
           await _tasksRepository.markTaskAsComplete(id);
@@ -43,10 +42,13 @@ class NotifyOutdatedTaskController {
       AppLocalizations t = await AppLocalizations.delegate.load(locale);
       for (final task in tasks) {
         await _notificationManger.showNotification(
-            id: task.id,
-            title: t.outDatedTask,
-            body: task.taskNote,
-            payload: task.taskNote);
+          notification: not.Notification(
+              id: task.id,
+              notificationType: not.NotificationType.outDatedTask,
+              title: t.outDatedTask,
+              body: task.taskNote,
+              priority: task.taskPiriority),
+        );
       }
 
       return Future.value(true);

@@ -49,6 +49,13 @@ class _DateFormFieldState extends State<DateFormField> {
     return await showDatePicker(
         initialEntryMode: DatePickerEntryMode.calendarOnly,
         context: context,
+        builder: (context, child) => Theme(
+            child: child!,
+            data: Theme.of(context).copyWith(
+                colorScheme: Theme.of(context).colorScheme.copyWith(
+                    background: Colors.red,
+                    onSurface: Theme.of(context).colorScheme.secondary,
+                    primary: Theme.of(context).colorScheme.secondary))),
         initialDate: DateTime.now(),
         currentDate: DateTime.now(),
         firstDate: DateTime.now(),
@@ -57,7 +64,14 @@ class _DateFormFieldState extends State<DateFormField> {
 
   Future<TimeOfDay?> _pickTime() async {
     return await showTimePicker(
+      initialEntryMode: TimePickerEntryMode.dial,
       context: context,
+      builder: (context, child) => Theme(
+          child: child!,
+          data: Theme.of(context).copyWith(
+              colorScheme: Theme.of(context).colorScheme.copyWith(
+                  onSurface: Theme.of(context).colorScheme.onSurface,
+                  primary: Theme.of(context).colorScheme.secondary))),
       initialTime: TimeOfDay.now(),
     );
   }

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:task_manger/src/bloc/new_task/new_task_cubit.dart';
 import 'package:task_manger/src/bloc/submission_state.dart';
-import 'package:task_manger/src/data/model/task.dart';
+import 'package:task_manger/src/data/model/priority.dart';
 import 'package:task_manger/src/data/model/task_input.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -30,7 +30,7 @@ class _NewTaskFormState extends State<NewTaskForm> {
   final TextEditingController _dateController = TextEditingController();
 
   final _key = GlobalKey<FormState>();
-  TaskPiriority _taskPriority = TaskPiriority.medium;
+  Priority _taskPriority = Priority.medium;
   bool _isAlarm = true;
 
   @override
@@ -75,25 +75,25 @@ class _NewTaskFormState extends State<NewTaskForm> {
                                 const SizedBox(
                                   height: 8,
                                 ),
-                                DropdownButtonFormField<TaskPiriority>(
+                                DropdownButtonFormField<Priority>(
                                     value: _taskPriority,
                                     items: [
-                                      DropdownMenuItem<TaskPiriority>(
-                                          value: TaskPiriority.high,
+                                      DropdownMenuItem<Priority>(
+                                          value: Priority.high,
                                           child: TaskPriorityItem(
                                             title: AppLocalizations.of(context)!
                                                 .high,
                                             color: Colors.red,
                                           )),
-                                      DropdownMenuItem<TaskPiriority>(
-                                          value: TaskPiriority.medium,
+                                      DropdownMenuItem<Priority>(
+                                          value: Priority.medium,
                                           child: TaskPriorityItem(
                                             title: AppLocalizations.of(context)!
                                                 .medium,
                                             color: Colors.green,
                                           )),
-                                      DropdownMenuItem<TaskPiriority>(
-                                          value: TaskPiriority.low,
+                                      DropdownMenuItem<Priority>(
+                                          value: Priority.low,
                                           child: TaskPriorityItem(
                                             title: AppLocalizations.of(context)!
                                                 .low,

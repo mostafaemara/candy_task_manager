@@ -20,8 +20,6 @@ import 'package:workmanager/workmanager.dart';
 
 import 'src/app.dart';
 
-import "src/data/model/notification.dart" as not;
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -34,9 +32,8 @@ void main() async {
   final _tasksRepository = TaskRepository(_sqlDb);
   final _notificationRepository = Notificationrepository(_sqlDb);
   final NotificationManger _notificationManger =
-      NotificationManger(onNotificationDisplay: (id, title, body) async {
-    await _notificationRepository
-        .addNotification(not.Notification(id: id, body: body, title: title));
+      NotificationManger(onNotificationDisplay: (notification) async {
+    await _notificationRepository.addNotification(notification);
   }, onSelectNotification: (id, action) async {
     if (action == NotificationAction.complete) {
       await _tasksRepository.markTaskAsComplete(id);

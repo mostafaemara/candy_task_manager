@@ -14,12 +14,18 @@ class TaskNoteFormField extends StatelessWidget {
     return TextFormField(
       validator: (value) => _validator(value, context),
       controller: controller,
+      keyboardType: TextInputType.multiline,
+      minLines: 1,
+      maxLines: 20,
+      maxLength: 1000,
+      autofocus: false,
+      cursorColor: Theme.of(context).colorScheme.onPrimary,
       decoration: InputDecoration(
         isCollapsed: true,
         isDense: true,
         hintStyle: TextStyle(
-            fontWeight: FontWeight.w900,
-            fontSize: 24,
+            fontWeight: FontWeight.w500,
+            fontSize: 16,
             color: Theme.of(context).colorScheme.onBackground),
         hintText: AppLocalizations.of(context)!.writeHere,
         contentPadding:

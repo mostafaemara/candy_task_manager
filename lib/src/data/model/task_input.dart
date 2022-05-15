@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:task_manger/src/data/model/task.dart';
+import 'package:task_manger/src/data/model/priority.dart';
 
 class TaskInput {
   TaskInput({
@@ -13,7 +13,7 @@ class TaskInput {
 
   final String taskNote;
   final String notificationTitle;
-  final TaskPiriority taskPiriority;
+  final Priority taskPiriority;
   final DateTime date;
   final bool isAlarm;
 

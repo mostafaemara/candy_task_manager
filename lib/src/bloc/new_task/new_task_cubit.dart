@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:task_manger/src/bloc/submission_state.dart';
+import 'package:task_manger/src/data/model/notification.dart';
 import 'package:task_manger/src/data/model/task_input.dart';
 import 'package:task_manger/src/data/repositories/task_repository.dart';
 import 'package:task_manger/src/mangers/notification_manger.dart';
@@ -20,11 +21,15 @@ class NewTaskCubit extends Cubit<SubmissionState> {
 
       final task = await _taskRepository.addTask(input);
       await _notificationManger.scheduleNotification(
-          id: task.id,
-          date: task.date,
-          title: input.notificationTitle,
-          isAlarm: task.isAlarm,
-          body: task.taskNote);
+        notification: Notification(
+            id: task.id,
+            notificationType: NotificationType.normal,
+            title: input.notificationTitle,
+            body: task.taskNote,
+            priority: task.taskPiriority),
+        date: task.date,
+        isAlarm: task.isAlarm,
+      );
       emit(state.copyWith(submissionStatus: SubmissionStatus.success));
     } catch (e) {
       emit(state.copyWith(

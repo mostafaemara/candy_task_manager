@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import "package:task_manger/src/data/model/notification.dart" as not;
 import 'package:task_manger/src/bloc/notification/notification_cubit.dart';
 import 'package:task_manger/src/bloc/notification/notification_state.dart';
 
@@ -45,8 +45,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                             : ListView.builder(
                                 itemCount: state.notifications.length,
                                 itemBuilder: (context, index) => _AlertListItem(
-                                    title:
-                                        "${state.notifications[index].title} : ${state.notifications[index].body}"),
+                                  notification: state.notifications[index],
+                                ),
                               ))
               ],
             )));
@@ -54,16 +54,24 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
 }
 
 class _AlertListItem extends StatelessWidget {
-  const _AlertListItem({Key? key, required this.title}) : super(key: key);
-  final String title;
+  const _AlertListItem({Key? key, required this.notification})
+      : super(key: key);
+  final not.Notification notification;
   @override
   Widget build(BuildContext context) {
+    final title =
+        notification.notificationType == not.NotificationType.outDatedTask
+            ? AppLocalizations.of(context)!.outDatedTask
+            : AppLocalizations.of(context)!.taskWarning;
+    final notificationColor =
+        notification.notificationType == not.NotificationType.outDatedTask
+            ? Colors.red
+            : AppColors.aquamarine;
     return ListTile(
       leading: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(
-            color: AppColors.aquamarine,
-            borderRadius: BorderRadius.circular(8.5)),
+            color: notificationColor, borderRadius: BorderRadius.circular(8.5)),
         height: 24,
         width: 24,
         child: Image.asset(
@@ -72,7 +80,7 @@ class _AlertListItem extends StatelessWidget {
           height: 11,
         ),
       ),
-      title: Text(title,
+      title: Text("$title : ${notification.body}",
           style: TextStyle(
             color: Theme.of(context).colorScheme.onBackground,
             fontWeight: FontWeight.w200,

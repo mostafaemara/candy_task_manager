@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_manger/src/data/model/priority.dart';
 import 'package:task_manger/src/data/model/task.dart';
 import 'package:task_manger/src/ui/common/custom_check_box.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -28,39 +29,44 @@ class TaskListItem extends StatelessWidget {
         onChange: onChange,
         value: task.isCompleted,
       ),
-      trailing: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              height: 25,
-              width: 25,
-              decoration: BoxDecoration(
-                  color: task.taskPiriority.toColor(),
-                  borderRadius: BorderRadius.circular(25)),
-            ),
-            const SizedBox(
-              width: 15,
-            ),
-            Text(
-              translate(task.taskPiriority, context).toUpperCase(),
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  height: 1.5,
-                  color: Theme.of(context).colorScheme.onSurface),
-            ),
-          ]),
+      trailing: SizedBox(
+        width: 100,
+        child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                height: 25,
+                width: 25,
+                decoration: BoxDecoration(
+                    color: task.taskPiriority.toColor(),
+                    borderRadius: BorderRadius.circular(25)),
+              ),
+              const SizedBox(
+                width: 15,
+              ),
+              FittedBox(
+                child: Text(
+                  translate(task.taskPiriority, context).toUpperCase(),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      height: 1.5,
+                      color: Theme.of(context).colorScheme.onSurface),
+                ),
+              ),
+            ]),
+      ),
     );
   }
 
-  String translate(TaskPiriority taskPiriority, BuildContext context) {
+  String translate(Priority taskPiriority, BuildContext context) {
     switch (taskPiriority) {
-      case TaskPiriority.high:
+      case Priority.high:
         return AppLocalizations.of(context)!.high;
-      case TaskPiriority.medium:
+      case Priority.medium:
         return AppLocalizations.of(context)!.medium;
-      case TaskPiriority.low:
+      case Priority.low:
         return AppLocalizations.of(context)!.low;
     }
   }

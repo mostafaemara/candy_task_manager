@@ -31,6 +31,23 @@ class AppTheme {
   }
 
   static ThemeData get darkTheme {
-    return ThemeData.dark();
+    return lightTheme.copyWith(
+      brightness: Brightness.dark,
+      scaffoldBackgroundColor: const Color(0xff121212),
+      colorScheme: AppColors.darkColorSchema,
+      inputDecorationTheme: InputDecorationTheme(
+          enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(8)),
+          errorBorder: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(8)),
+          contentPadding: const EdgeInsets.all(8),
+          border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(8)),
+          fillColor: AppColors.darkColorSchema.background,
+          filled: true),
+    );
   }
 }

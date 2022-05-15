@@ -5,6 +5,7 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:task_manger/src/bloc/config/config_cubit.dart';
 import 'package:task_manger/src/routes/app_router.dart';
 import 'package:task_manger/src/utils/images.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -38,23 +39,20 @@ class OnboardingScreen extends StatelessWidget {
         pages: [
           PageViewModel(
             decoration: pageDecoration,
-            title: "Mange Your Task",
-            body:
-                "Here you can write the description of the page, to explain someting...",
+            title: AppLocalizations.of(context)!.onboardingTitle1,
+            body: AppLocalizations.of(context)!.onboardingBody1,
             image: Image.asset(Images.onboarding_1, height: imageHeight),
           ),
           PageViewModel(
             decoration: pageDecoration,
-            title: "Work On Time",
-            body:
-                "Here you can write the description of the page, to explain someting...",
+            title: AppLocalizations.of(context)!.onboardingTitle2,
+            body: AppLocalizations.of(context)!.onboardingBody2,
             image: Image.asset(Images.onboarding_2, height: imageHeight),
           ),
           PageViewModel(
             decoration: pageDecoration,
-            title: "Get reminder on time",
-            body:
-                "Here you can write the description of the page, to explain someting...",
+            title: AppLocalizations.of(context)!.onboardingTitle3,
+            body: AppLocalizations.of(context)!.onboardingBody3,
             image: Image.asset(Images.onboarding_3, height: imageHeight),
           )
         ],
