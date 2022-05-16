@@ -3,7 +3,7 @@
     "description": "The title of the application"
   },
   "alerts": "Alerts.        & updates —",
-  "appTitle": "task_manger",
+  "appTitle": "Candy Task Manager",
   "completeBy": "Complete by",
   "confirmPassword": "Confirm Password",
   "confrimPasswordRequired": "confirm password is required",
@@ -44,7 +44,7 @@
   "selectDate": "Select a date",
   "settings": "Settings",
   "showAsNotification": "Show as notification",
-  "splashTitle": "Simple Task Manger",
+  "splashTitle": "Simple Task Manager",
   "taskWarning": "You have task to finish !",
   "termsAndPolicies": "By registering, you automatically accept the Terms & Policies of candy app.",
   "todayList": "Today's list —",

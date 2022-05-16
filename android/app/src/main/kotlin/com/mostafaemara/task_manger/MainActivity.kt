@@ -1,4 +1,4 @@
-package com.mostafaemara.task_manger
+package com.mostafaemara.candyTaskManager
 
 import io.flutter.embedding.android.FlutterActivity
 

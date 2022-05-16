@@ -3,7 +3,7 @@
     "description": "The title of the application"
   },
   "alerts": " التنبيهات و تحديثات  —",
-  "appTitle": "task_manger",
+  "appTitle": "Candy Task Manager",
   "completeBy": "اكتمل بحلول",
   "confirmPassword": "تأكيد كلمة المرور",
   "confrimPasswordRequired": "تأكيد كلمة المرور مطلوب",

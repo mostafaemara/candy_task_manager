@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mostafaemara.task_manger">
+    package="com.mostafaemara.candyTaskManager">
              <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE " />
   <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -8,7 +8,7 @@
    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
    <application
    android:name="${applicationName}"
-        android:label="task_manger"
+        android:label="Candy Task Manager"
         
         android:icon="@mipmap/ic_launcher">
 
