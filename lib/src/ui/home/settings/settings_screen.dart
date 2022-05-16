@@ -42,7 +42,9 @@ class SettingsScreen extends StatelessWidget {
                         .changeLanguage(Language.english);
                   },
                   selected: state.language == Language.english,
-                  selectedColor: Theme.of(context).colorScheme.onPrimary,
+                  textColor: Theme.of(context).colorScheme.primary,
+                  iconColor: Theme.of(context).colorScheme.primary,
+                  selectedColor: Theme.of(context).colorScheme.secondary,
                   title: const Text("English"),
                   trailing: const Icon(Icons.language),
                 ),
@@ -50,8 +52,10 @@ class SettingsScreen extends StatelessWidget {
                   onTap: () {
                     context.read<ConfigCubit>().changeLanguage(Language.arabic);
                   },
+                  textColor: Theme.of(context).colorScheme.primary,
+                  iconColor: Theme.of(context).colorScheme.primary,
                   selected: state.language == Language.arabic,
-                  selectedColor: Theme.of(context).colorScheme.onPrimary,
+                  selectedColor: Theme.of(context).colorScheme.secondary,
                   title: const Text("العربية"),
                   trailing: const Icon(Icons.language),
                 ),

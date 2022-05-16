@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:task_manger/src/styles/colors.dart';
 import 'package:task_manger/src/validators/task_errors.dart';
 import 'package:task_manger/src/validators/task_validators.dart';
 
@@ -47,32 +48,54 @@ class _DateFormFieldState extends State<DateFormField> {
 
   Future<DateTime?> _pickDate() async {
     return await showDatePicker(
-        initialEntryMode: DatePickerEntryMode.calendarOnly,
-        context: context,
-        builder: (context, child) => Theme(
-            child: child!,
-            data: Theme.of(context).copyWith(
-                colorScheme: Theme.of(context).colorScheme.copyWith(
-                    background: Colors.red,
-                    onSurface: Theme.of(context).colorScheme.secondary,
-                    primary: Theme.of(context).colorScheme.secondary))),
-        initialDate: DateTime.now(),
-        currentDate: DateTime.now(),
-        firstDate: DateTime.now(),
-        lastDate: DateTime(2050));
+      initialEntryMode: DatePickerEntryMode.calendarOnly,
+      context: context,
+      initialDate: DateTime.now(),
+      currentDate: DateTime.now(),
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2050),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: const ColorScheme.light(
+              primary: AppColors.darkBlue, // header background color
+              onPrimary: Colors.white, // header text color
+              onSurface: AppColors.darkBlue, // body text color
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                primary: AppColors.darkBlue, // button text color
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
+    );
   }
 
   Future<TimeOfDay?> _pickTime() async {
     return await showTimePicker(
       initialEntryMode: TimePickerEntryMode.dial,
       context: context,
-      builder: (context, child) => Theme(
-          child: child!,
-          data: Theme.of(context).copyWith(
-              colorScheme: Theme.of(context).colorScheme.copyWith(
-                  onSurface: Theme.of(context).colorScheme.onSurface,
-                  primary: Theme.of(context).colorScheme.secondary))),
       initialTime: TimeOfDay.now(),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: const ColorScheme.light(
+              primary: AppColors.darkBlue, // header background color
+              onPrimary: Colors.white, // header text color
+              onSurface: AppColors.darkBlue, // body text color
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                primary: AppColors.darkBlue, // button text color
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
     );
   }
 }

@@ -34,8 +34,10 @@ class _UpcomingTasksScreenState extends State<UpcomingTasksScreen> {
         Expanded(
             child: BlocBuilder<TasksCubit, TasksState>(
           builder: (context, state) => state.isLoading
-              ? CircularProgressIndicator(
-                  color: Theme.of(context).colorScheme.secondary,
+              ? Center(
+                  child: CircularProgressIndicator(
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
                 )
               : state.todayTasks.isEmpty
                   ? Center(

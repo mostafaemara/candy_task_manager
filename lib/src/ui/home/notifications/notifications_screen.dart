@@ -32,8 +32,10 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 Header(title: AppLocalizations.of(context)!.alerts),
                 Expanded(
                     child: state.isLoading
-                        ? const Center(
-                            child: CircularProgressIndicator(),
+                        ? Center(
+                            child: CircularProgressIndicator(
+                              color: Theme.of(context).colorScheme.secondary,
+                            ),
                           )
                         : state.notifications.isEmpty
                             ? Center(

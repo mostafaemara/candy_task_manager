@@ -76,6 +76,8 @@ class _NewTaskFormState extends State<NewTaskForm> {
                                   height: 8,
                                 ),
                                 DropdownButtonFormField<Priority>(
+                                    dropdownColor:
+                                        Theme.of(context).colorScheme.surface,
                                     value: _taskPriority,
                                     items: [
                                       DropdownMenuItem<Priority>(
@@ -149,12 +151,20 @@ class _NewTaskFormState extends State<NewTaskForm> {
   void _handleSubmission() {
     if (_key.currentState!.validate()) {
       _key.currentState!.save();
-      context.read<NewTaskCubit>().addNewTask(TaskInput(
-          taskPiriority: _taskPriority,
-          taskNote: _taskNoteController.text,
-          date: DateTime.parse(_dateController.text),
-          isAlarm: _isAlarm,
-          notificationTitle: AppLocalizations.of(context)!.youTaskToComplete));
+      final date = DateTime.parse(_dateController.text);
+
+      if (!date.isAfter(DateTime.now())) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(AppLocalizations.of(context)!.dateInvalid)));
+      } else {
+        context.read<NewTaskCubit>().addNewTask(TaskInput(
+            taskPiriority: _taskPriority,
+            taskNote: _taskNoteController.text,
+            date: date,
+            isAlarm: _isAlarm,
+            notificationTitle:
+                AppLocalizations.of(context)!.youTaskToComplete));
+      }
     }
   }
 

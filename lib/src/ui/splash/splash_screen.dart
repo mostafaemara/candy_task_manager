@@ -33,7 +33,9 @@ class _SplashScreenState extends State<SplashScreen> {
           }
       },
       child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Theme.of(context).brightness == Brightness.dark
+            ? Theme.of(context).colorScheme.background
+            : Theme.of(context).colorScheme.primary,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -41,6 +43,16 @@ class _SplashScreenState extends State<SplashScreen> {
               Image.asset(
                 Images.logo,
                 height: 240,
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Text(
+                "Candy",
+                style: TextStyle(
+                    fontWeight: FontWeight.w900,
+                    color: Theme.of(context).colorScheme.secondary,
+                    fontSize: 30),
               ),
               const SizedBox(
                 height: 34,
