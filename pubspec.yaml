@@ -19,7 +19,7 @@ dependencies:
   flutter_switch: ^0.3.2
   shared_preferences: ^2.0.14
   flutter_bloc: ^8.0.1
-  validators: ^3.0.0
+
   sqflite: ^2.0.2+1
   workmanager:
     git:

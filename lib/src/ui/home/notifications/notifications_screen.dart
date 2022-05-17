@@ -5,8 +5,9 @@ import 'package:task_manger/src/bloc/notification/notification_cubit.dart';
 import 'package:task_manger/src/bloc/notification/notification_state.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:task_manger/src/ui/common/loading_indicator.dart';
 
-import 'package:task_manger/src/styles/colors.dart';
+import 'package:task_manger/src/ui/styles/colors.dart';
 import 'package:task_manger/src/ui/common/custom_app_bar.dart';
 import 'package:task_manger/src/ui/common/header.dart';
 import 'package:task_manger/src/utils/images.dart';
@@ -32,11 +33,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 Header(title: AppLocalizations.of(context)!.alerts),
                 Expanded(
                     child: state.isLoading
-                        ? Center(
-                            child: CircularProgressIndicator(
-                              color: Theme.of(context).colorScheme.secondary,
-                            ),
-                          )
+                        ? const LoadingIndicator()
                         : state.notifications.isEmpty
                             ? Center(
                                 child: Image.asset(

@@ -2,14 +2,14 @@ class Images {
   static const logo = "assets/images/logo.png";
   static const todoListIcon = "assets/images/list_icon.png";
   static const upcomingTasksIcon = "assets/images/clock_icon.png";
-  static const notification_icon = "assets/images/bell_icon.png";
-  static const profile_icon = "assets/images/settings.png";
-  static const selected_todo_list_icon = "assets/images/selected_list_icon.png";
-  static const selected_upcoming_tasks_icon =
+  static const notificationIcon = "assets/images/bell_icon.png";
+  static const profileIcon = "assets/images/settings.png";
+  static const selectedTodoListIcon = "assets/images/selected_list_icon.png";
+  static const selectedUpcomingTasksIcon =
       "assets/images/selected_clock_icon.png";
-  static const selected_notification_icon =
+  static const selectedNotificationIcon =
       "assets/images/selected_bell_icon.png";
-  static const selected_profile_icon = "assets/images/selected_settings.png";
+  static const selectedProfileIcon = "assets/images/selected_settings.png";
   static const menuIcon = "assets/images/menu_icon.png";
   static const searchIcon = "assets/images/search_icon.png";
   static const noteIcon = "assets/images/note.png";

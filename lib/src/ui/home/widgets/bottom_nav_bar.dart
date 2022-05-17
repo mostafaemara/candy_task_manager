@@ -44,7 +44,7 @@ class _AppBottomNavBarState extends State<AppBottomNavBar>
             Tab(
               icon: Image.asset(
                 _controller.index == 0
-                    ? Images.selected_todo_list_icon
+                    ? Images.selectedTodoListIcon
                     : Images.todoListIcon,
                 height: 24,
                 width: 24,
@@ -53,7 +53,7 @@ class _AppBottomNavBarState extends State<AppBottomNavBar>
             Tab(
               icon: Image.asset(
                 _controller.index == 1
-                    ? Images.selected_upcoming_tasks_icon
+                    ? Images.selectedUpcomingTasksIcon
                     : Images.upcomingTasksIcon,
                 height: 24,
                 width: 24,
@@ -68,8 +68,8 @@ class _AppBottomNavBarState extends State<AppBottomNavBar>
             Tab(
               icon: Image.asset(
                 _controller.index == 3
-                    ? Images.selected_notification_icon
-                    : Images.notification_icon,
+                    ? Images.selectedNotificationIcon
+                    : Images.notificationIcon,
                 height: 24,
                 width: 24,
               ),
@@ -77,8 +77,8 @@ class _AppBottomNavBarState extends State<AppBottomNavBar>
             Tab(
               icon: Image.asset(
                 _controller.index == 4
-                    ? Images.selected_profile_icon
-                    : Images.profile_icon,
+                    ? Images.selectedProfileIcon
+                    : Images.profileIcon,
                 height: 24,
                 width: 24,
               ),

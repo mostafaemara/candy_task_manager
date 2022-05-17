@@ -5,8 +5,8 @@ import 'package:task_manger/src/ui/edite_profile/edite_profile_screen.dart';
 import 'package:task_manger/src/ui/home/home_screen.dart';
 import 'package:task_manger/src/ui/home/notifications/notifications_screen.dart';
 import 'package:task_manger/src/ui/home/settings/settings_screen.dart';
+import 'package:task_manger/src/ui/home/today_tasks/today_tasks_screen.dart';
 
-import 'package:task_manger/src/ui/home/todo/today_tasks_screen.dart';
 import 'package:task_manger/src/ui/home/upcoming_tasks/upcoming_tasks_screen.dart';
 
 import 'package:task_manger/src/ui/new_task/new_task_screen.dart';

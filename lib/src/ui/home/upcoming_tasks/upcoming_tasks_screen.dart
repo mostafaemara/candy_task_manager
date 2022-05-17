@@ -10,6 +10,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:task_manger/src/ui/common/custom_app_bar.dart';
 import 'package:task_manger/src/ui/common/header.dart';
+import 'package:task_manger/src/ui/common/loading_indicator.dart';
 import 'package:task_manger/src/ui/common/subtitle.dart';
 import 'package:task_manger/src/ui/common/task_list_item.dart';
 import 'package:task_manger/src/utils/images.dart';
@@ -34,11 +35,7 @@ class _UpcomingTasksScreenState extends State<UpcomingTasksScreen> {
         Expanded(
             child: BlocBuilder<TasksCubit, TasksState>(
           builder: (context, state) => state.isLoading
-              ? Center(
-                  child: CircularProgressIndicator(
-                    color: Theme.of(context).colorScheme.secondary,
-                  ),
-                )
+              ? const LoadingIndicator()
               : state.todayTasks.isEmpty
                   ? Center(
                       child: Image.asset(
