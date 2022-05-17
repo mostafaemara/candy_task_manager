@@ -51,7 +51,7 @@ help saving user preferences such as selected language
 
 ## Application Architecture
 
-![Design image](../blob/64ee5e5185f3546384ee47187a9d6bb869bcdeb9/arch.png)
+![Design image](../blob/main/arch.png?raw=true)
 
 - Bloc: contains application business logic
 - data: Data Layer to interact with datasources such as rest api or local database in our case is sqlite and shared preference so incase we decide to switch to rest api we edite the repositories and models only
