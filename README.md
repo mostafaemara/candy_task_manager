@@ -15,24 +15,29 @@ A Simple Task Manager App to help user by manage and schedule Tasks
 - English and arabic language Support
 - Dark Mode Support
 
-## Tools
+## Tools & Packages
 
-### [Awesome Notification Package](https://pub.dev/packages/awesome_notifications)
+### [Awesome Notification](https://pub.dev/packages/awesome_notifications)
 
- to show and schdule local notifications with action buttons
+show and schdule local notifications with action buttons
 
- 
+### [Work Manger](https://pub.dev/packages/workmanager)
 
+run background periodic task every 24 hours to fetch outdated Incompleted tasks from sqlite database and show notification as missed tasks
 
+### [sqflite](https://pub.dev/packages/sqflite)
 
+save tasks and notification events localy
 
+### [shared_preferences](https://pub.dev/packages/shared_preferences)
 
+help saving user preferences such as selected language
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## UI kit
 
-## Assets
+![Design image](https://cdn.dribbble.com/users/180538/screenshots/3710437/media/aef748443f9247f66cf246e2982ea05a.png)
+
+ [UI kit source page](https://dribbble.com/shots/3710437-Free-UI-Kit-Candy)
 
 The `assets` directory houses images, fonts, and any other files you want to
 include with your application.
@@ -40,7 +45,9 @@ include with your application.
 The `assets/images` directory contains [resolution-aware
 images](https://flutter.dev/docs/development/ui/assets-and-images#resolution-aware).
 
-## Localization
+## Application Architecture
+
+
 
 This project generates localized messages based on arb files found in
 the `lib/src/localization` directory.
@@ -48,4 +55,5 @@ the `lib/src/localization` directory.
 To support additional languages, please visit the tutorial on
 [Internationalizing Flutter
 apps](https://flutter.dev/docs/development/accessibility-and-localization/internationalization)
+
 # candy_app_task_manger
