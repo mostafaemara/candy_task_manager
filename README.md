@@ -3,11 +3,11 @@
 A Simple Task Manager App to help user by manage and schedule Tasks
 
 <p float="left">
-  <img src="(candy_task_manager/blob/master/5c4f4cd722a64883c7918da006bbb3c0221b2242/image1.jpeg)" width="400" />
-  <img src="candy_task_manager/blob/master/5c4f4cd722a64883c7918da006bbb3c0221b2242/image1.jpeg" width="100" /> 
-  <img src="candy_task_manager/blob/master/5c4f4cd722a64883c7918da006bbb3c0221b2242/image1.jpeg" width="100" />
-    <img src="/candy_task_manager/blob/master/5c4f4cd722a64883c7918da006bbb3c0221b2242/image1.jpeg" width="100" />
-      <img src="candy_task_manager/blob/master/5c4f4cd722a64883c7918da006bbb3c0221b2242/image1.jpeg" width="100" />
+  <img src="image1.jpeg" width="250" />
+  <img src="image2.jpeg" width="250" />
+  <img src="image3.jpeg" width="250" />
+    <img src="image4.jpeg" width="250" />
+      <img src="image5.jpeg" width="250" />
 </p>
 
 ## Features
@@ -47,11 +47,9 @@ help saving user preferences such as selected language
 
  [UI kit source page](https://dribbble.com/shots/3710437-Free-UI-Kit-Candy)
 
-
-
 ## Application Architecture
 
-![Design image](../blob/main/arch.png?raw=true)
+![Architecture](arch.png?raw=true)
 
 - Bloc: contains application business logic
 - data: Data Layer to interact with datasources such as rest api or local database in our case is sqlite and shared preference so incase we decide to switch to rest api we edite the repositories and models only
@@ -64,6 +62,8 @@ help saving user preferences such as selected language
 I made This Application to learn and try new ways and  techniques it could be done with much simpler way the topics i focus on is
 
 - How to Schedule alarm on specific date and time to get notification as alarm on time even if the screen is turned off.
-- How to add action Buttons to notifications and do actions using another layer without explicit that layer to notification manager, for example update sqlite with data on action button clicked i used callback functions and make the communications between notification manger and this layers inside the main, its okay for the main to be polluted with implmentaion details. 
+- How to add action Buttons to notifications and do actions using another layer without explicit that layer to notification manager, for example update sqlite with data on action button clicked i used callback functions and make the communications between notification manger and this layers inside the main, its okay for the main to be polluted with implmentaion details.
 - How to create periodic task that run in the background  even if the app closed and interact with local database (sqlite) and push notifications.
 - Try and find new better Architectures
+
+[![Google Play](play_badge.png | width=100)](https://www.linkedin.com/in/mostafasaademara/)
