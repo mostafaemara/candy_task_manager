@@ -64,6 +64,8 @@ I made This Application to learn and try new ways and  techniques it could be do
 - How to Schedule alarm on specific date and time to get notification as alarm on time even if the screen is turned off.
 - How to add action Buttons to notifications and do actions using another layer without explicit that layer to notification manager, for example update sqlite with data on action button clicked i used callback functions and make the communications between notification manger and this layers inside the main, its okay for the main to be polluted with implmentaion details.
 - How to create periodic task that run in the background  even if the app closed and interact with local database (sqlite) and push notifications.
-- Try and find new better Architectures
-
-[![Google Play](play_badge.png | width=100)](https://www.linkedin.com/in/mostafasaademara/)
+- Try and find new better Architectures.
+  
+<a href="https://example.url.com">
+<img src="play_badge.png" width="200" >
+</a>
