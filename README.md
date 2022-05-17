@@ -1,12 +1,10 @@
 # Candy Task Manger
 
-A Simple Task Manager App
+A Simple Task Manager App to help user by manage and schedule Tasks 
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application that follows the
-[simple app state management
-tutorial](https://flutter.dev/docs/development/data-and-backend/state-mgmt/simple).
+
 
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
