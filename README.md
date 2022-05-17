@@ -1,6 +1,6 @@
-# task_manger
+# Candy Task Manger
 
-A new Flutter project.
+A Simple Task Manager App
 
 ## Getting Started
 
