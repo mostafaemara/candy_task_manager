@@ -12,10 +12,10 @@ A Simple Task Manager App to help user by manage and schedule Tasks
 
 ## Features
 
-- Schedule tasks and get notification or alarm on choosen date and time
+- Schedule tasks and get notification or alarm on chosen date and time
 - Mark tasks as Completed from notification action button
 - Save notifications as alert events on notification displayed
-- Cancel task or mark as completed will remove it from the shcedule
+- Cancel task or mark as completed will remove it from the    schedule
 - Outdated Tasks Which not marked as completed will Fire a Notification each 24 hour as Missed Task
 - Notification screen to show alerts events
 - Today screen to show tasks for today
