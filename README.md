@@ -1,4 +1,4 @@
-# Candy Task Manger
+# Candy Task Manager
 
 A Simple Task Manager App to help user by manage and schedule Tasks
 
