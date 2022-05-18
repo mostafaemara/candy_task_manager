@@ -14,7 +14,7 @@ A Simple Task Manager App to help user by manage and schedule Tasks
 
 - Schedule tasks and get notification or alarm on choosen date and time
 - Mark tasks as Completed from notification action button
-- save notifications as alert events on notification displayed
+- Save notifications as alert events on notification displayed
 - Cancel task or mark as completed will remove it from the shcedule
 - Outdated Tasks Which not marked as completed will Fire a Notification each 24 hour as Missed Task
 - Notification screen to show alerts events
@@ -39,7 +39,7 @@ save tasks and notification events localy
 
 ### [shared_preferences](https://pub.dev/packages/shared_preferences)
 
-help saving user preferences such as selected language
+ to save user preferences such as selected language
 
 ## UI kit
 
@@ -51,11 +51,11 @@ help saving user preferences such as selected language
 
 ![Architecture](arch.png?raw=true)
 
-- Bloc: contains application business logic
+- bloc: contains application business logic
 - data: Data Layer to interact with datasources such as rest api or local database in our case is sqlite and shared preference so incase we decide to switch to rest api we edite the repositories and models only
-- Helpers Usually Dart Extensions on classes  to help others layers by extending functionality and decrease boilerplate
-- Managers: Services Layer to deal and manage communications with os system services
-- UI: Conatains anything related to views and styling (widgets,colors,sizes,padding,themes)
+- helpers Usually Dart Extensions on classes  to help others layers by extending functionality and decrease boilerplate
+- managers: Services Layer to deal and manage communications with os system services
+- ui: Conatains anything related to views and styling (widgets,colors,sizes,padding,themes)
 
 ### Note
 
@@ -66,6 +66,6 @@ I made This Application to learn and try new ways and  techniques it could be do
 - How to create periodic task that run in the background  even if the app closed and interact with local database (sqlite) and push notifications.
 - Try and find new better Architectures.
   
-<a href="https://example.url.com">
+<a href="https://play.google.com/store/apps/details?id=com.mostafaemara.candyTaskManager">
 <img src="play_badge.png" width="200" >
 </a>
